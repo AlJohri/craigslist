@@ -19,6 +19,7 @@ if __name__ == '__main__':
     parser.add_argument('--has_picture', action='store_true', default=None)
     parser.add_argument('--availability', choices=availability_choices)
     parser.add_argument('--verbose', action="store_true")
+    parser.add_argument('--detail', action="store_true")
 
     args = parser.parse_args()
 
@@ -28,6 +29,7 @@ if __name__ == '__main__':
         logging.getLogger('urllib3').setLevel(logging.WARNING)
 
     params = {
+        "get_detailed_posts": args.detail,
         "postal": args.postal,
         "search_distance": args.distance,
         "min_price": args.min_price,

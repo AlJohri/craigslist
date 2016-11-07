@@ -21,6 +21,18 @@ BaseJSONSearchPost = namedtuple('RegularSearchPost', [
 class JSONSearchPost(BaseJSONSearchPost, BasePost):
     pass
 
+BaseJSONSearchCluster = namedtuple('BaseJSONSearchCluster', [
+    'id',
+    'url',
+    'longitude',
+    'latitude',
+    'posting_ids',
+    'num_posts',
+    'date'])
+
+class JSONSearchCluster(BaseJSONSearchCluster, BasePost):
+    pass
+
 BaseRegularSearchPost = namedtuple('RegularSearchPost', [
     'id',
     'title',

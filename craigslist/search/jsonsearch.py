@@ -1,7 +1,7 @@
 import logging
 import simplejson as json
 from datetime import datetime, timezone
-from craigslist.models import JSONSearchPost
+from craigslist.models import JSONSearchCluster, JSONSearchPost
 from craigslist.search import get_query_url
 from craigslist.utils import cdn_url_to_http
 from craigslist.io import (
@@ -16,14 +16,14 @@ def query_jsonsearch(city, sort="date", get=get, get_detailed_posts=False, execu
 
     def process_posts(posts, post_executor):
         futures = [post_executor.submit(
-            process_post_url, post['url']) for post in posts]
+            process_post_url, post.url) for post in posts]
         for future in as_completed(futures):
             post = future.result()
             yield post
 
     def process_clusters(clusters, cluster_executor):
         futures = [cluster_executor.submit(
-            process_cluster_url, cluster['url']) for cluster in clusters]
+            process_cluster_url, cluster.url) for cluster in clusters]
         for future in as_completed(futures):
             posts, clusters = future.result()
             if get_detailed_posts:
@@ -51,11 +51,22 @@ def process_cluster_url(url):
     body = get(url)
     items, meta = json.loads(body)
     baseurl = cdn_url_to_http(meta['baseurl'])
-    posts = [process_post_json(x) for x in items if not x.get('GeoCluster')]
-    clusters = [x for x in items if x.get('GeoCluster')]
-    for cluster in clusters:
-        cluster['url'] = baseurl + cluster['url']
+    posts = [process_post_json(x)
+        for x in items if not x.get('GeoCluster')]
+    clusters = [process_cluster_json(x, baseurl)
+        for x in items if x.get('GeoCluster')]
     return posts, clusters
+
+def process_cluster_json(cluster, baseurl):
+    return JSONSearchCluster(**{
+        'id': cluster['GeoCluster'],
+        'url': baseurl + cluster['url'],
+        'longitude': cluster['Longitude'],
+        'latitude': cluster['Latitude'],
+        'num_posts': cluster['NumPosts'],
+        'posting_ids': cluster['PostingID'].split(','),
+        'date': datetime.fromtimestamp(float(cluster['PostedDate']), timezone.utc).isoformat()
+    })
 
 def process_post_json(post):
     return JSONSearchPost(**{
