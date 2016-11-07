@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import json
-from craigslist import query_jsonsearch
+from craigslist.search import query_jsonsearch
 
 if __name__ == '__main__':
 

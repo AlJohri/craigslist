@@ -1,6 +1,9 @@
+aiohttp==1.0.5
 arrow==0.8.0
 blessings==1.6
 cssselect==1.0.0
 geopy==1.11.0
 lxml==3.6.4
+pytest==3.0.3
 requests==2.11.1
+vcrpy==1.10.3
