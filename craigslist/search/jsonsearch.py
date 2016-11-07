@@ -1,4 +1,6 @@
-import json, arrow, queue, logging
+import logging
+import simplejson as json
+from datetime import datetime, timezone
 from craigslist.models import JSONSearchPost
 from craigslist.search import get_query_url
 from craigslist.utils import cdn_url_to_http
@@ -6,9 +8,6 @@ from craigslist.io import (
     ThreadPoolExecutor, ProcessPoolExecutor, FakeExecutor, 
     as_completed, get, async_get)
 
-logging.basicConfig(level=logging.DEBUG, format='[%(name)s | Thread: %(thread)d %(threadName)s | Process: %(process)d %(processName)s] %(asctime)s %(message)s')
-logging.getLogger('requests').setLevel(logging.WARNING)
-logging.getLogger('urllib3').setLevel(logging.WARNING)
 logger = logging.getLogger(__name__)
 
 def query_jsonsearch(city, sort="date", get=get, get_detailed_posts=False, executor_class=ThreadPoolExecutor, max_workers=None, **kwargs):
@@ -67,18 +66,15 @@ def process_post_json(post):
         'latitude': post['Latitude'],
         'price': post['Ask'],
         'bedrooms': post['Bedrooms'],
-        'date': arrow.get(post['PostedDate']).isoformat(),
+        'date': datetime.fromtimestamp(float(post['PostedDate']), timezone.utc).isoformat(),
         'thumbnail': post.get('ImageThumb'),
         'category_id': post['CategoryID'],
     })
 
-if __name__ == '__main__':
-
-    for x in query_jsonsearch('washingtondc', executor_class=ThreadPoolExecutor, postal=20071, search_distance=1):
-        pass
-
-    # for x in query_jsonsearch('washingtondc', executor_class=ProcessPoolExecutor, postal=20071, search_distance=1):
-    #     pass
-
-    # for x in query_jsonsearch('washingtondc', executor_class=FakeExecutor, postal=20071, search_distance=1):
-    #     pass
+# if __name__ == '__main__':
+#     for x in query_jsonsearch('washingtondc', executor_class=ThreadPoolExecutor, postal=20071, search_distance=1):
+#         pass
+#     for x in query_jsonsearch('washingtondc', executor_class=ProcessPoolExecutor, postal=20071, search_distance=1):
+#         pass
+#     for x in query_jsonsearch('washingtondc', executor_class=FakeExecutor, postal=20071, search_distance=1):
+#         pass

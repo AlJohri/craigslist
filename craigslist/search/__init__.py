@@ -1,6 +1,3 @@
-import arrow
-import requests
-import lxml.html
 from urllib.parse import urlencode
 from craigslist.utils import cdn_url_to_http
 
