@@ -9,17 +9,7 @@ Python wrapper for craigslist.
 
 ## Usage
 
-```
-from craigslist.regularsearch import get_listings
-for listing in get_listings():
-	print(listing)
-```
-
-```
-from craigslist.jsonsearch import get_listings
-for listing in get_listings():
-	print(listing)
-```
+This library is a WIP.
 
 ## Development
 
