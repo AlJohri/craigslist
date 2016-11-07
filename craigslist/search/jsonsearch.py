@@ -3,7 +3,8 @@ import simplejson as json
 from datetime import datetime, timezone
 from craigslist.models import JSONSearchCluster, JSONSearchPost
 from craigslist.search import get_query_url
-from craigslist.utils import cdn_url_to_http
+from craigslist.utils import cdn_url_to_http, import_class
+from craigslist.post import process_post_url
 from craigslist.io import (
     ThreadPoolExecutor, ProcessPoolExecutor, FakeExecutor, 
     as_completed, get, async_get)
@@ -11,19 +12,21 @@ from craigslist.io import (
 logger = logging.getLogger(__name__)
 
 def query_jsonsearch(city, sort="date", get=get, get_detailed_posts=False, executor_class=ThreadPoolExecutor, max_workers=None, **kwargs):
+    if isinstance(executor_class, str):
+        executor_class = import_class(executor_class)
     post_executor = executor_class(max_workers=max_workers)
     cluster_executor = executor_class(max_workers=max_workers)
 
     def process_posts(posts, post_executor):
         futures = [post_executor.submit(
-            process_post_url, post.url) for post in posts]
+            process_post_url, post.url, get) for post in posts]
         for future in as_completed(futures):
             post = future.result()
             yield post
 
     def process_clusters(clusters, cluster_executor):
         futures = [cluster_executor.submit(
-            process_cluster_url, cluster.url) for cluster in clusters]
+            process_cluster_url, cluster.url, get) for cluster in clusters]
         for future in as_completed(futures):
             posts, clusters = future.result()
             if get_detailed_posts:
@@ -33,20 +36,14 @@ def query_jsonsearch(city, sort="date", get=get, get_detailed_posts=False, execu
             process_clusters(clusters, cluster_executor)
     
     url = get_query_url(city, "jsonsearch", sort=sort, **kwargs)
-    posts, clusters = process_cluster_url(url)
+    posts, clusters = process_cluster_url(url, get)
     if get_detailed_posts:
         yield from process_posts(posts, post_executor)
     else:
         yield from posts
     yield from process_clusters(clusters, cluster_executor)
 
-def process_post_url(url):
-    logger.debug("downloading %s" % url)
-    body = get(url)
-    post = body # parse stuff
-    return post
-
-def process_cluster_url(url):
+def process_cluster_url(url, get):
     logger.debug("downloading %s" % url)
     body = get(url)
     items, meta = json.loads(body)

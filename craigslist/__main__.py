@@ -3,6 +3,7 @@
 import logging
 import simplejson as json
 from craigslist.search import query_jsonsearch
+from craigslist.utils import ActionNoYes
 
 if __name__ == '__main__':
 
@@ -20,6 +21,8 @@ if __name__ == '__main__':
     parser.add_argument('--availability', choices=availability_choices)
     parser.add_argument('--verbose', action="store_true")
     parser.add_argument('--detail', action="store_true")
+    parser.add_argument('--executor_class')
+    # parser._add_action(ActionNoYes('foo', 'foo', help="Do (or do not) foo. (default do)"))
 
     args = parser.parse_args()
 
@@ -37,6 +40,9 @@ if __name__ == '__main__':
         "hasPic": int(args.has_picture) if args.has_picture else None,
         "availabilityMode": availability_choices.get(args.availability)
     }
+
+    if args.executor_class:
+        params['executor_class'] = args.executor_class
 
     for post in query_jsonsearch(args.city, **params):
         print(json.dumps(post, namedtuple_as_object=True))
