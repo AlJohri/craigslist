@@ -3,7 +3,7 @@ from concurrent.futures import as_completed
 from craigslist.search import get_query_url
 from craigslist.utils import import_class
 from craigslist.post import process_post_url
-from craigslist.io import get
+from craigslist.io import requests_get
 from craigslist.search.jsonsearch import parse_cluster_url_output
 
 logger = logging.getLogger(__name__)
@@ -11,9 +11,9 @@ logger = logging.getLogger(__name__)
 def jsonsearch(
     area,
     category,
-    sort="date",
-    get_detailed_posts=False,
-    get=get,
+    sort,
+    get_detailed_posts,
+    get=requests_get,
     executor_class='concurrent.futures.ThreadPoolExecutor',
     max_workers=None,
     **kwargs):

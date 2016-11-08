@@ -15,9 +15,14 @@ class ActionNoYes(argparse.Action):
             setattr(namespace, self.dest, True)
 
 def main():
+    description = """
+    examples:
+    craigslist search washingtondc --postal 20071 --distance 1 --has_picture --availability within_30_days
+    """
+
     availability_choices = {'all_dates': 0, 'within_30_days': 1, 'beyond_30_days': 2}
 
-    parser = argparse.ArgumentParser(description='Process some integers.')
+    parser = argparse.ArgumentParser(description='Craigslist CLI.')
     parser.add_argument('city')
     parser.add_argument('--postal', help="postal code to center search results around")
     parser.add_argument('--distance', type=int, help="distance in miles from the postal code")

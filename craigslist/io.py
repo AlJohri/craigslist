@@ -29,11 +29,11 @@ class FakeExecutor:
     def submit(self, fn, *args, **kwargs):
         return FakeFuture(fn, *args, **kwargs)
 
-def get(url):
+def requests_get(url):
     import requests
     return requests.get(url).text
 
-async def async_get():
+async def asyncio_get():
     import aiohttp
     async with aiohttp.get(url) as r:
         return await r.text()

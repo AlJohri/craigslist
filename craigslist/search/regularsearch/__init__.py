@@ -42,7 +42,7 @@ def parse_post(post):
     housing = [x.strip() for x in housing_el.text.split("-\n") \
         if x.strip()] if housing_el is not None else []
     bedrooms_raw = get_only_first_or_none([x for x in housing if "br" in x])
-    bedrooms = int(bedrooms_raw.replace("br", "")) if bedrooms_raw else None
+    num_bedrooms = int(bedrooms_raw.replace("br", "")) if bedrooms_raw else None
     area_raw = get_only_first_or_none([x for x in housing if "ft" in x])
     area = int(area_raw.replace("ft", "")) if area_raw else None
     return RegularSearchPost(**{
