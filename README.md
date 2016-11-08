@@ -63,3 +63,10 @@ optional arguments:
 ```
 make virtualenv install
 ```
+
+### Test
+
+```
+workon craigslist
+py.test
+```
