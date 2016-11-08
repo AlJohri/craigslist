@@ -6,6 +6,14 @@ logger = logging.getLogger(__name__)
 def process_post_url(url, get):
     logger.debug("downloading %s" % url)
     body = get(url)
+    return process_post_url_output(body)
+
+async def async_process_post_url(url, get):
+    logger.debug("downloading %s" % url)
+    body = await get(url)
+    return process_post_url_output(body)
+
+def process_post_url_output(body):
     doc = lxml.html.fromstring(body)
     # lxml.html.tostring(doc.cssselect("#postingbody")[0])
     # doc.cssselect("div.mapaddress")[0].text

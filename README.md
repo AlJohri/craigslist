@@ -29,7 +29,5 @@ craigslist washingtondc --postal 20071 --distance 1 --has_picture --availability
 ### Setup
 
 ```
-mkvirtualenv craigslist -p python3
-pip install --editable .
-pip install -r requirements-dev.txt
+make virtualenv install
 ```

@@ -1,3 +1,4 @@
 aiohttp==1.0.5
 pytest==3.0.3
 vcrpy==1.10.3
+tldextract==2.0.2

@@ -1,7 +1,3 @@
-from concurrent.futures import (
-    ThreadPoolExecutor, ProcessPoolExecutor,
-    as_completed)
-
 class FakeCondition:
     def __init__(self):
         self.acquire = lambda: None

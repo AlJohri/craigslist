@@ -1,10 +1,18 @@
 #!/usr/bin/env python3
 
+import json
 import argparse
 import logging
-import simplejson as json
-from craigslist.search import query_jsonsearch
-from craigslist.utils import ActionNoYes
+from craigslist import search
+
+class ActionNoYes(argparse.Action):
+    def __init__(self, opt_name, dest, default=True, required=False, help=None):
+        super(ActionNoYes, self).__init__(['--' + opt_name, '--no-' + opt_name], dest, nargs=0, const=None, default=default, required=required, help=help)
+    def __call__(self, parser, namespace, values, option_string=None):
+        if option_string.starts_with('--no-'):
+            setattr(namespace, self.dest, False)
+        else:
+            setattr(namespace, self.dest, True)
 
 def main():
     availability_choices = {'all_dates': 0, 'within_30_days': 1, 'beyond_30_days': 2}
@@ -20,12 +28,15 @@ def main():
     parser.add_argument('--verbose', action="store_true")
     parser.add_argument('--detail', action="store_true")
     parser.add_argument('--executor_class')
-    # parser._add_action(ActionNoYes('foo', 'foo', help="Do (or do not) foo. (default do)"))
+    parser._add_action(ActionNoYes('cache', 'cache', help="Do (or do not) cache. (default do)"))
+    parser.add_argument('--cachedir', help='Cache directory. Defaults to ~/.craigslist')
 
     args = parser.parse_args()
 
     if args.verbose:
-        logging.basicConfig(level=logging.DEBUG, format='[%(name)s | Thread: %(thread)d %(threadName)s | Process: %(process)d %(processName)s] %(asctime)s %(message)s')
+        logging.basicConfig(level=logging.DEBUG, format=
+            "[%(name)s | Thread: %(thread)d %(threadName)s | "
+            "Process: %(process)d %(processName)s] %(asctime)s %(message)s")
         logging.getLogger('requests').setLevel(logging.WARNING)
         logging.getLogger('urllib3').setLevel(logging.WARNING)
 
@@ -42,8 +53,8 @@ def main():
     if args.executor_class:
         params['executor_class'] = args.executor_class
 
-    for post in query_jsonsearch(args.city, **params):
-        print(json.dumps(post, namedtuple_as_object=True))
+    for post in search(args.city, "apa", **params):
+        print(json.dumps(post._asdict()))
 
 if __name__ == '__main__':
     main()
