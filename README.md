@@ -9,7 +9,7 @@ Python wrapper for craigslist.
 
 ## Install
 ```
-pip3 install git+https://github.com/AlJohri/craigslist.git
+pip3 install --upgrade git+https://github.com/AlJohri/craigslist.git
 ```
 
 ## Usage
