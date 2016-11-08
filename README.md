@@ -16,13 +16,12 @@ pip3 install --upgrade git+https://github.com/AlJohri/craigslist.git
 
 ## API
 
+See the [examples](./examples) folder.
+
 ```python
 from craigslist import search
 
 for post in search('washingtondc', 'apa', postal=20071, search_distance=1):
-    print(post)
-
-async for post in search('washingtondc', 'apa', postal=20071, search_distance=1):
     print(post)
 ```
 
