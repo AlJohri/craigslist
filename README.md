@@ -2,7 +2,7 @@
 
 Python wrapper for craigslist.
 
-*NOTE*: This library is a WIP. The API is not stable.
+**NOTE**: This library is a WIP. The API is not stable.
 
 ## Disclaimer
 
@@ -16,7 +16,7 @@ pip3 install --upgrade git+https://github.com/AlJohri/craigslist.git
 
 ## API
 
-```
+```python
 from craigslist import search
 
 for post in search('washingtondc', 'apa', postal=20071, search_distance=1):
