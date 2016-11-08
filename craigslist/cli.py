@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
 
+import argparse
 import logging
 import simplejson as json
 from craigslist.search import query_jsonsearch
 from craigslist.utils import ActionNoYes
 
-if __name__ == '__main__':
-
-    import argparse
-
+def main():
     availability_choices = {'all_dates': 0, 'within_30_days': 1, 'beyond_30_days': 2}
 
     parser = argparse.ArgumentParser(description='Process some integers.')
@@ -46,3 +44,6 @@ if __name__ == '__main__':
 
     for post in query_jsonsearch(args.city, **params):
         print(json.dumps(post, namedtuple_as_object=True))
+
+if __name__ == '__main__':
+    main()

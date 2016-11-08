@@ -7,6 +7,11 @@ Python wrapper for craigslist.
 - This library is not associated with Craigslist.
 - Please read the Craigslist [terms of use](https://www.craigslist.org/about/terms.of.use.en).
 
+## Install
+```
+pip3 install git+https://github.com/AlJohri/craigslist.git
+```
+
 ## Usage
 
 This library is a WIP.
@@ -25,5 +30,7 @@ python -m craigslist washingtondc --postal 20071 --distance 1 --has_picture --av
 ### Setup
 
 ```
-mkvirtualenv craigslist -p python3 -r requirements.txt -a `pwd`
+mkvirtualenv craigslist -p python3
+pip install --editable .
+pip install -r requirements-dev.txt
 ```

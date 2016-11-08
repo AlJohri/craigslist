@@ -1,5 +1,0 @@
-requests==2.11.1
-cssselect==1.0.0
-lxml==3.6.4
-simplejson==3.10.0
-
