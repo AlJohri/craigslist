@@ -1,0 +1,2 @@
+class CraigslistException(Exception):
+    pass

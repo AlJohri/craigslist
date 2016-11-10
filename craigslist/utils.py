@@ -11,3 +11,6 @@ def import_class(s):
     module = importlib.import_module(module_string)
     klass = getattr(module, klass_string)
     return klass
+
+from blessings import Terminal
+t = Terminal()

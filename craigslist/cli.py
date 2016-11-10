@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
+import sys
 import json
+import blessings
 import itertools
 import argparse
 import logging
@@ -8,6 +10,8 @@ import textwrap
 from os import path
 from craigslist import search
 from craigslist.data import DATA_FOLDER
+from craigslist.exceptions import CraigslistException
+from craigslist.utils import t
 
 def main():
     global_description = """
@@ -39,6 +43,8 @@ def main():
         with open(path.join(DATA_FOLDER, 'arguments.json')) as f:
             arguments = json.load(f)
 
+        parser.add_argument('query', nargs='?', default=None)
+
         for argument in arguments:
             x = {k:v for k,v in argument.items() if v is not None}
             parser.add_argument("--" + argument['dest'], **x)
@@ -66,8 +72,12 @@ def main():
 
     posts = itertools.islice(
         search(args.area, args.category, **params), 0, args.limit)
-    for post in posts:
-        print(json.dumps(post._asdict()))
+    try:
+        for post in posts:
+            print(json.dumps(post._asdict()))
+    except CraigslistException as e:
+        print(t.red(str(e)))
+        sys.exit()
 
 if __name__ == '__main__':
     main()

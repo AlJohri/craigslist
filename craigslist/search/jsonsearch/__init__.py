@@ -3,6 +3,7 @@ import logging
 from datetime import datetime, timezone
 from craigslist.models import JSONSearchCluster, JSONSearchPost
 from craigslist.utils import cdn_url_to_http
+from craigslist.exceptions import CraigslistException
 
 logger = logging.getLogger(__name__)
 
@@ -10,14 +11,13 @@ def parse_cluster_url_output(body):
     try:
         items, meta = json.loads(body)
     except ValueError as e:
-        logger.error(
+        raise CraigslistException(
             "could not find items and meta "
             "in json response body: '{}'".format(body))
-        raise
     try:
         baseurl = cdn_url_to_http(meta['baseurl'])
     except KeyError as e:
-        logger.error(
+        raise CraigslistException(
             "could not find baseurl in meta: '{}' "
             "with body:'{}'. probably empty response. "
             "is your query too specific?".format(meta, body))
