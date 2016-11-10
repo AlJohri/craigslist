@@ -1,5 +1,5 @@
 from craigslist.models import RegularSearchPost
-from craigslist.search import get_query_url
+from craigslist._search import get_query_url
 
 def regularsearch(area, sort="date", **kwargs):
     doc = lxml.html.fromstring(requests.get(get_query_url(

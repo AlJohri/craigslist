@@ -5,7 +5,7 @@ import requests
 import lxml.html
 from collections import namedtuple
 from pprint import pprint as pp
-from craigslist.search import get_url_base
+from craigslist._search import get_url_base
 
 BaseArgument = namedtuple('Argument', [
     'dest', 'default', 'action', 'const', 'nargs', 'choices', 'help', 'metavar'])

@@ -23,5 +23,5 @@ def get_query_url(area, category, type_, offset=0, sort="date", **kwargs):
         type=type_, category=category, params=urlencode(params_expanded))
     return url
 
-from craigslist.search.jsonsearch import jsonsearch, async_jsonsearch
-from craigslist.search.regularsearch import regularsearch, async_regularsearch
+from craigslist._search.jsonsearch import jsonsearch, async_jsonsearch
+from craigslist._search.regularsearch import regularsearch, async_regularsearch

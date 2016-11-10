@@ -19,3 +19,5 @@ async def async_search(area, category, type_="jsonsearch", get_detailed_posts=Fa
         return async_regularsearch(area, category, type_, get_detailed_posts, cache, cachedir, **kwargs)
     else:
         raise Exception("unknown search type")
+
+del os

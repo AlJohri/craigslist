@@ -7,7 +7,7 @@ setup(
     author='Al Johri',
     author_email='al.johri@gmail.com',
     url='https://github.com/AlJohri/craigslist',
-    packages=['craigslist', 'craigslist.search'],
+    packages=['craigslist', 'craigslist._search'],
     package_data={'craigslist': ['data/*.json']},
     install_requires=['requests', 'cssselect', 'lxml', 'blessings'],
     entry_points={

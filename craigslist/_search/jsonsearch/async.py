@@ -1,5 +1,5 @@
 import logging
-from craigslist.search.jsonsearch import parse_cluster_url_output
+from craigslist._search.jsonsearch import parse_cluster_url_output
 from craigslist.io import asyncio_get
 
 logger = logging.getLogger(__name__)

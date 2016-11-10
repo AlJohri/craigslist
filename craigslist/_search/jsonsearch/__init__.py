@@ -55,5 +55,5 @@ def parse_post(post):
         'bedrooms': post.get('Bedrooms'),
     })
 
-from craigslist.search.jsonsearch.sync import jsonsearch
-from craigslist.search.jsonsearch.async import jsonsearch as async_jsonsearch
+from craigslist._search.jsonsearch.sync import jsonsearch
+from craigslist._search.jsonsearch.async import jsonsearch as async_jsonsearch

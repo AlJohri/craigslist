@@ -1,10 +1,10 @@
 import logging
 from concurrent.futures import as_completed
-from craigslist.search import get_query_url
 from craigslist.utils import import_class
 from craigslist.post import process_post_url
 from craigslist.io import requests_get
-from craigslist.search.jsonsearch import parse_cluster_url_output
+from craigslist._search import get_query_url
+from craigslist._search.jsonsearch import parse_cluster_url_output
 
 logger = logging.getLogger(__name__)
 
