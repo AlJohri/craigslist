@@ -20,6 +20,7 @@ def main():
     craigslist search newyork aap --postal 10023 --search_distance 1 --hasPic --availabilityMode within_30_days --limit 100
     craigslist search sfbay ccc --postal 94305 --search_distance 1 --limit 10
     craigslist search vancouver sss "shoes" --condition new like_new --hasPic --max_price 20 --limit 10
+    craigslist search washingtondc jjj --is_telecommuting --is_internship
     """
     global_description = textwrap.dedent(global_description)
     formatter_class = lambda prog: argparse.RawDescriptionHelpFormatter(prog, max_help_position=32)
