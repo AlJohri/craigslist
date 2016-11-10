@@ -1,6 +1,10 @@
 import os
 
-async def search(area, category, type_="jsonsearch", get_detailed_posts=False, cache=True, cachedir=os.path.expanduser('~'), **kwargs):
+# rename this from async.py to something else
+
+print('hi')
+
+def search(area, category, type_="jsonsearch", get_detailed_posts=False, cache=True, cachedir=os.path.expanduser('~'), **kwargs):
     from craigslist._search import async_jsonsearch, async_regularsearch
 
     if type_ == "jsonsearch":

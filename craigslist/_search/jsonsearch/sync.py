@@ -8,6 +8,12 @@ from craigslist._search.jsonsearch import parse_cluster_url_output
 
 logger = logging.getLogger(__name__)
 
+# move processing of posts into another generator that just downloads posts
+# this will make the function cleaner
+# remove the get_detailed_posts parameter from this function and keep it at the
+# top level only
+# get detailed posts code is same between regularsearch and jsonsearch
+
 def jsonsearch(
     area,
     category,

@@ -17,7 +17,7 @@ clean:
 	find . -type d -name '__pycache__' -delete
 
 virtualenv:
-	mkvirtualenv craigslist -p python3
+	mkvirtualenv craigslist -p python3.6
 
 install:
 	pip install --editable .

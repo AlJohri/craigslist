@@ -38,6 +38,10 @@ async def asyncio_get():
     async with aiohttp.get(url) as r:
         return await r.text()
 
+def asyncio_queue():
+    from asyncio import Queue
+    return Queue
+
 async def tornado_get():
     from tornado import httpclient
     # http_client = httpclient.AsyncHTTPClient(max_clients=CONCURRENCY)

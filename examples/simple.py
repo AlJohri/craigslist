@@ -2,5 +2,9 @@
 
 from craigslist import search
 
-for post in search('washingtondc', 'apa', postal=20071, search_distance=1):
-    print(post)
+def main()
+    for post in search('washingtondc', 'apa', postal=20071, search_distance=1):
+        print(post)
+
+if __name__ == '__main__':
+    main()
