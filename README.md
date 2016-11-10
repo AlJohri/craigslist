@@ -28,6 +28,12 @@ optional arguments:
   -h, --help  show this help message and exit
 ```
 
+For more details, try:
+
+```
+$ craigslist search --help
+```
+
 ## API
 
 See the [examples](./examples) folder.
@@ -37,12 +43,6 @@ from craigslist import search
 
 for post in search('washingtondc', 'apa', postal=20071, search_distance=1):
     print(post)
-```
-
-For more details, try:
-
-```
-$ craigslist search --help
 ```
 
 ## Development

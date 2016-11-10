@@ -18,6 +18,8 @@ async def jsonsearch(
     cachedir,
     get=asyncio_get,
     **kwargs):
+    
+    raise NotImplementedError()
 
     # q = queues.Queue(maxsize=CONCURRENCY)
 
