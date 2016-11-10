@@ -4,19 +4,20 @@ class BasePost:
     __slots__ = ()
 
     def __new__(cls, **kwargs):
-        return super().__new__(cls, *[kwargs[k] for k in cls._fields])
+        return super().__new__(cls, *[kwargs.get(k) for k in cls._fields])
 
 BaseJSONSearchPost = namedtuple('RegularSearchPost', [
     'id',
     'title',
     'url',
+    'category_id',
+    'thumbnail',
     'longitude',
     'latitude',
+    'date',
     'price',
     'bedrooms',
-    'date',
-    'thumbnail',
-    'category_id'])
+    ])
 
 class JSONSearchPost(BaseJSONSearchPost, BasePost):
     pass

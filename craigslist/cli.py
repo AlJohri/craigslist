@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import json
+import itertools
 import argparse
 import logging
 import textwrap
@@ -9,15 +10,19 @@ from craigslist import search
 from craigslist.data import DATA_FOLDER
 
 def main():
-    description = """
+    global_description = """
     examples:
-    craigslist search washingtondc apa --postal 20071 --search_distance 1 --hasPic --availabilityMode within_30_days
+    craigslist search washingtondc apa --postal 20071 --search_distance 1
+    craigslist search newyork aap --postal 10023 --search_distance 1 --hasPic --availabilityMode within_30_days --limit 100
+    craigslist search sfbay ccc --postal 94305 --search_distance 1 --limit 10
     """
+    global_description = textwrap.dedent(global_description)
+    formatter_class = lambda prog: argparse.RawDescriptionHelpFormatter(prog, max_help_position=32)
 
     parser = argparse.ArgumentParser(
         prog='craigslist',
-        description=textwrap.dedent(description),
-        formatter_class=argparse.RawTextHelpFormatter    )
+        description=global_description,
+        formatter_class=formatter_class)
     subparsers = parser.add_subparsers(dest='command')
     subparsers.required = True
 
@@ -25,7 +30,9 @@ def main():
         parser = parent_subparsers.add_parser(
             'search',
             usage='%(prog)s area category [options]',
-            help='get resources')
+            description=global_description,
+            formatter_class=formatter_class,
+            help='search craigslist')
         parser.add_argument('area')
         parser.add_argument('category')
 
@@ -36,6 +43,7 @@ def main():
             x = {k:v for k,v in argument.items() if v is not None}
             parser.add_argument("--" + argument['dest'], **x)
 
+        parser.add_argument('--limit', type=int)
         parser.add_argument('--verbose', action="store_true")
         parser.add_argument('--detail', action="store_true")
         parser.add_argument('--executor_class')
@@ -56,7 +64,9 @@ def main():
     filter_out_params = ['verbose', 'command', 'area', 'category']
     params = {k:v for k,v in vars(args).items() if v and k not in filter_out_params}
 
-    for post in search(args.area, args.category, **params):
+    posts = itertools.islice(
+        search(args.area, args.category, **params), 0, args.limit)
+    for post in posts:
         print(json.dumps(post._asdict()))
 
 if __name__ == '__main__':

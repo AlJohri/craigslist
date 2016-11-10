@@ -7,9 +7,13 @@ from collections import namedtuple
 from pprint import pprint as pp
 from craigslist.search import get_url_base
 
-BaseArgument = namedtuple('Argument', ['dest', 'default', 'action', 'const', 'nargs', 'choices'])
+BaseArgument = namedtuple('Argument', [
+    'dest', 'default', 'action', 'const', 'nargs', 'choices', 'help', 'metavar'])
 class Argument(BaseArgument):
     def __new__(cls, **kwargs):
+        if kwargs.get('choices'):
+            kwargs['help'] = 'Choices are: ' + ', '.join("'%s'" % x[0] for x in kwargs['choices'])
+            kwargs['metavar'] = ''
         return super().__new__(cls, *[kwargs.get(k) for k in cls._fields])
 
 LOCATION = 'washingtondc'
@@ -70,4 +74,4 @@ if __name__ == '__main__':
     arguments = [x._asdict() for x in set([argument for section in sections for argument in get_arguments(section)])]
     for argument in arguments:
         argument['choices'] = dict(argument['choices']) if argument.get('choices') else None
-    print(json.dumps(arguments, indent=4, sort_keys=True))
+    print(json.dumps(sorted(arguments, key=lambda x: (len(x['choices'] or []), x['dest'])), indent=4, sort_keys=True))
