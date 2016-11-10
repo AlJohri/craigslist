@@ -1,0 +1,279 @@
+[
+    {
+        "action": null,
+        "choices": {
+            "attached_garage": "2",
+            "carport": "1",
+            "detached_garage": "3",
+            "no_parking": "7",
+            "off_street_parking": "4",
+            "street_parking": "5",
+            "valet_parking": "6"
+        },
+        "const": null,
+        "default": null,
+        "dest": "parking",
+        "nargs": "*"
+    },
+    {
+        "action": "store_const",
+        "choices": null,
+        "const": "1",
+        "default": null,
+        "dest": "is_internship",
+        "nargs": null
+    },
+    {
+        "action": "store_const",
+        "choices": null,
+        "const": "T",
+        "default": null,
+        "dest": "srchType",
+        "nargs": null
+    },
+    {
+        "action": null,
+        "choices": {
+            "contract": "3",
+            "employees_choice": "4",
+            "full_time": "1",
+            "part_time": "2"
+        },
+        "const": null,
+        "default": null,
+        "dest": "employment_type",
+        "nargs": "*"
+    },
+    {
+        "action": null,
+        "choices": {
+            "laundry_in_bldg": "2",
+            "laundry_on_site": "3",
+            "no_laundry_on_site": "5",
+            "w_d_hookups": "4",
+            "w_d_in_unit": "1"
+        },
+        "const": null,
+        "default": null,
+        "dest": "laundry",
+        "nargs": "*"
+    },
+    {
+        "action": null,
+        "choices": null,
+        "const": null,
+        "default": null,
+        "dest": "search_distance",
+        "nargs": null
+    },
+    {
+        "action": null,
+        "choices": null,
+        "const": null,
+        "default": null,
+        "dest": "min_price",
+        "nargs": null
+    },
+    {
+        "action": null,
+        "choices": null,
+        "const": null,
+        "default": null,
+        "dest": "max_price",
+        "nargs": null
+    },
+    {
+        "action": "store_const",
+        "choices": null,
+        "const": "1",
+        "default": null,
+        "dest": "searchNearby",
+        "nargs": null
+    },
+    {
+        "action": null,
+        "choices": null,
+        "const": null,
+        "default": null,
+        "dest": "sale_date",
+        "nargs": null
+    },
+    {
+        "action": "store_const",
+        "choices": null,
+        "const": "1",
+        "default": null,
+        "dest": "wheelchaccess",
+        "nargs": null
+    },
+    {
+        "action": "store_const",
+        "choices": null,
+        "const": "1",
+        "default": null,
+        "dest": "pets_dog",
+        "nargs": null
+    },
+    {
+        "action": "store_const",
+        "choices": null,
+        "const": "1",
+        "default": null,
+        "dest": "no_smoking",
+        "nargs": null
+    },
+    {
+        "action": null,
+        "choices": null,
+        "const": null,
+        "default": null,
+        "dest": "postal",
+        "nargs": null
+    },
+    {
+        "action": "store_const",
+        "choices": null,
+        "const": "1",
+        "default": null,
+        "dest": "is_furnished",
+        "nargs": null
+    },
+    {
+        "action": "store_const",
+        "choices": null,
+        "const": "1",
+        "default": null,
+        "dest": "postedToday",
+        "nargs": null
+    },
+    {
+        "action": "store_const",
+        "choices": null,
+        "const": "1",
+        "default": null,
+        "dest": "is_telecommuting",
+        "nargs": null
+    },
+    {
+        "action": null,
+        "choices": {
+            "all_dates": "0",
+            "beyond_30_days": "2",
+            "within_30_days": "1"
+        },
+        "const": null,
+        "default": "0",
+        "dest": "availabilityMode",
+        "nargs": null
+    },
+    {
+        "action": null,
+        "choices": {
+            "apartment": "1",
+            "assisted_living": "11",
+            "condo": "2",
+            "cottage_cabin": "3",
+            "duplex": "4",
+            "flat": "5",
+            "house": "6",
+            "in_law": "7",
+            "land": "12",
+            "loft": "8",
+            "manufactured": "10",
+            "townhouse": "9"
+        },
+        "const": null,
+        "default": null,
+        "dest": "housing_type",
+        "nargs": "*"
+    },
+    {
+        "action": null,
+        "choices": {
+            "1plus_bathrooms": "1",
+            "2plus_bathrooms": "2",
+            "3plus_bathrooms": "3",
+            "4plus_bathrooms": "4",
+            "5plus_bathrooms": "5",
+            "6plus_bathrooms": "6",
+            "7plus_bathrooms": "7",
+            "8plus_bathrooms": "8"
+        },
+        "const": null,
+        "default": null,
+        "dest": "bathrooms",
+        "nargs": null
+    },
+    {
+        "action": "store_const",
+        "choices": null,
+        "const": "1",
+        "default": null,
+        "dest": "hasPic",
+        "nargs": null
+    },
+    {
+        "action": "store_const",
+        "choices": null,
+        "const": "1",
+        "default": null,
+        "dest": "pets_cat",
+        "nargs": null
+    },
+    {
+        "action": "store_const",
+        "choices": null,
+        "const": "1",
+        "default": null,
+        "dest": "is_nonprofit",
+        "nargs": null
+    },
+    {
+        "action": null,
+        "choices": {
+            "1plus_bedrooms": "1",
+            "2plus_bedrooms": "2",
+            "3plus_bedrooms": "3",
+            "4plus_bedrooms": "4",
+            "5plus_bedrooms": "5",
+            "6plus_bedrooms": "6",
+            "7plus_bedrooms": "7",
+            "8plus_bedrooms": "8"
+        },
+        "const": null,
+        "default": null,
+        "dest": "bedrooms",
+        "nargs": null
+    },
+    {
+        "action": null,
+        "choices": null,
+        "const": null,
+        "default": null,
+        "dest": "maxSqft",
+        "nargs": null
+    },
+    {
+        "action": null,
+        "choices": {
+            "excellent": "30",
+            "fair": "50",
+            "good": "40",
+            "like_new": "20",
+            "new": "10",
+            "salvage": "60"
+        },
+        "const": null,
+        "default": null,
+        "dest": "condition",
+        "nargs": "*"
+    },
+    {
+        "action": null,
+        "choices": null,
+        "const": null,
+        "default": null,
+        "dest": "minSqft",
+        "nargs": null
+    }
+]
