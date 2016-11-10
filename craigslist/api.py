@@ -1,7 +1,7 @@
 import os
 
 def search(area, category, type_="jsonsearch", get_detailed_posts=False, cache=True, cachedir=os.path.expanduser('~'), **kwargs):
-    from craigslist.search import jsonsearch, regularsearch
+    from craigslist._search import jsonsearch, regularsearch
 
     if type_ == "jsonsearch":
         return jsonsearch(area, category, type_, get_detailed_posts, cache, cachedir, **kwargs)
@@ -11,7 +11,7 @@ def search(area, category, type_="jsonsearch", get_detailed_posts=False, cache=T
         raise Exception("unknown search type")
 
 async def async_search(area, category, type_="jsonsearch", get_detailed_posts=False, cache=True, cachedir=os.path.expanduser('~'), **kwargs):
-    from craigslist.search import async_jsonsearch, async_regularsearch
+    from craigslist._search import async_jsonsearch, async_regularsearch
 
     if type_ == "jsonsearch":
         return async_jsonsearch(area, category, type_, get_detailed_posts, cache, cachedir, **kwargs)
