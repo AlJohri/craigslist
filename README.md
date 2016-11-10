@@ -1,28 +1,10 @@
-# craigslist
+# craigslist [**pre-alpha**]
 
 Python wrapper for craigslist.
-
-**NOTE**: This library is a WIP. The API is not stable.
-
-## Disclaimer
-
-- This library is not associated with Craigslist.
-- Please read the Craigslist [terms of use](https://www.craigslist.org/about/terms.of.use.en).
 
 ## Install
 ```
 pip3 install --upgrade git+https://github.com/AlJohri/craigslist.git
-```
-
-## API
-
-See the [examples](./examples) folder.
-
-```python
-from craigslist import search
-
-for post in search('washingtondc', 'apa', postal=20071, search_distance=1):
-    print(post)
 ```
 
 ## CLI
@@ -46,6 +28,17 @@ optional arguments:
   -h, --help  show this help message and exit
 ```
 
+## API
+
+See the [examples](./examples) folder.
+
+```python
+from craigslist import search
+
+for post in search('washingtondc', 'apa', postal=20071, search_distance=1):
+    print(post)
+```
+
 For more details, try:
 
 ```
@@ -66,3 +59,8 @@ make virtualenv install
 workon craigslist
 py.test
 ```
+
+## Disclaimer
+
+- This library is not associated with Craigslist.
+- Please read the Craigslist [terms of use](https://www.craigslist.org/about/terms.of.use.en).
