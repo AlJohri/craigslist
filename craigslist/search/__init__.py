@@ -11,9 +11,16 @@ def get_url_base(area):
 
 def get_query_url(area, category, type_, offset=0, sort="date", **kwargs):
     params = {"s": offset, "sort": sort, **kwargs}
-    params = {k:v for k,v in params.items() if v is not None}
+    params_expanded = []
+    for k,v in params.items():
+        if v is None: continue
+        if isinstance(v, list):
+            for x in v:
+                params_expanded.append((k, x))
+        else:
+            params_expanded.append((k,v))
     url = get_url_base(area) + "/{type}/{category}?{params}".format(
-        type=type_, category=category, params=urlencode(params))
+        type=type_, category=category, params=urlencode(params_expanded))
     return url
 
 from craigslist.search.jsonsearch import jsonsearch, async_jsonsearch

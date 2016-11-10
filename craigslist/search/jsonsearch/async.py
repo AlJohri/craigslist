@@ -14,6 +14,8 @@ async def jsonsearch(
     category,
     sort,
     get_detailed_posts,
+    cache,
+    cachedir,
     get=asyncio_get,
     **kwargs):
 

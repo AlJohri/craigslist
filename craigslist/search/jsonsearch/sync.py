@@ -13,6 +13,8 @@ def jsonsearch(
     category,
     sort,
     get_detailed_posts,
+    cache,
+    cachedir,
     get=requests_get,
     executor_class='concurrent.futures.ThreadPoolExecutor',
     max_workers=None,
