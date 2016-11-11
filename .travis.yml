@@ -5,4 +5,8 @@ python:
 install: 
   - pip install .
   - pip install -r requirements-dev.txt
-script: pytest
+script:
+  - pytest
+  - coverage run --source craigslist -m pytest
+after_success:
+  - coveralls
