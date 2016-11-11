@@ -7,6 +7,6 @@ install:
   - pip install -r requirements-dev.txt
 script:
   - pytest
-  - coverage run --source craigslist -m pytest
+  - coverage run --source craigslist --omit craigslist._search.jsonsearch.async,craigslist.api.async -m pytest
 after_success:
   - coveralls
