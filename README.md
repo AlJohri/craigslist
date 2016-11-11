@@ -1,6 +1,7 @@
 # craigslist [**pre-alpha**]
 
-![](https://travis-ci.org/AlJohri/craigslist.svg?branch=master)
+[![Travis CI Status](https://travis-ci.org/AlJohri/craigslist.svg?branch=master)](https://travis-ci.org/AlJohri/craigslist)
+[![Coverage Status](https://coveralls.io/repos/github/AlJohri/craigslist/badge.svg?branch=master)](https://coveralls.io/github/AlJohri/craigslist?branch=master)
 
 Python wrapper for craigslist.
 
