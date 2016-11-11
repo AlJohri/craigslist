@@ -22,3 +22,9 @@ virtualenv:
 install:
 	pip install --editable .
 	pip install -r requirements-dev.txt
+
+register:
+	python setup.py register
+
+upload:
+	python setup.py sdist upload
