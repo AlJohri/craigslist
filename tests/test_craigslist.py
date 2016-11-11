@@ -7,7 +7,8 @@ def test_search_apa():
     gen = search('washingtondc', 'apa', postal=20071, search_distance=1)
     post = next(gen)
 
-@vcr.use_cassette()
+# no vcr (can't use it)
+# figure out some way to make this more testable?
 def test_search_apa_with_detail():
     gen = search('washingtondc', 'apa', postal=20071, search_distance=1, get_detailed_posts=True)
     post = next(gen)
