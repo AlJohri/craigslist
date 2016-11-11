@@ -7,6 +7,7 @@ setup(
     author='Al Johri',
     author_email='al.johri@gmail.com',
     url='https://github.com/AlJohri/craigslist',
+    license='MIT',
     packages=['craigslist', 'craigslist.api', 'craigslist._search', 'craigslist._search.jsonsearch', 'craigslist._search.regularsearch'],
     package_data={'craigslist': ['data/*.json']},
     install_requires=['requests', 'cssselect', 'lxml', 'blessings'],
@@ -16,6 +17,9 @@ setup(
         ]
     },
     classifiers=[
+        'Programming Language :: Python :: 3 :: Only',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'License :: OSI Approved :: MIT License',
     ]
 )
