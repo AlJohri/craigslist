@@ -13,7 +13,7 @@ from craigslist.data import get_areas, DATA_FOLDER
 from craigslist.exceptions import CraigslistException
 from craigslist.utils import t
 
-def main():
+def cli():
     global_description = """
     examples:
     craigslist search washingtondc apa --postal 20071 --search_distance 1
@@ -120,6 +120,11 @@ def main():
         logging.getLogger('requests').setLevel(logging.WARNING)
         logging.getLogger('urllib3').setLevel(logging.WARNING)
 
+    return args
+
+# TODO modularize this more to make it testable
+def main():
+    args = cli()
     args.func(args)
 
 if __name__ == '__main__':

@@ -7,7 +7,8 @@ def test_search_apa():
     gen = search('washingtondc', 'apa', postal=20071, search_distance=1)
     post = next(gen)
 
-@vcr.use_cassette(mode='new_episodes')
+# no vcr (can't use it)
+# figure out some way to make this more testable?
 def test_search_apa_with_clusters():
     from itertools import islice
     gen = search('washingtondc', 'apa', postal=20071, search_distance=1)
@@ -35,3 +36,7 @@ def test_import_class():
     with pytest.raises(ImportError) as e_info:
         import_class('mypath.that.doesntexist.ImaginaryClass')
 
+def test_cli():
+    from craigslist.cli import cli
+    with pytest.raises(SystemExit) as e_info:
+        args = cli()
