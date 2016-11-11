@@ -1,5 +1,7 @@
 # craigslist [**pre-alpha**]
 
+![](https://travis-ci.org/AlJohri/craigslist.svg?branch=master)
+
 Python wrapper for craigslist.
 
 ## Install
