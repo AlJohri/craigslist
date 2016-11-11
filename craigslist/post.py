@@ -21,6 +21,5 @@ def process_post_url_output(body):
     # "".join([x.text_content() for x in doc.cssselect("h2.postingtitle span.postingtitletext")[0].getchildren()[:-1]])
     # doc.cssselect("h2.postingtitle span.postingtitletext #titletextonly")[0].text
     # [a.get('href') for a in doc.cssselect("#thumbs a")]
-    import pdb; pdb.set_trace()
     post = body # parse stuff
     return post
