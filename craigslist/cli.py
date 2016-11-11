@@ -44,6 +44,7 @@ def main():
         def cli_search(args):
             filter_out_params = ['verbose', 'command', 'area', 'category']
             params = {k:v for k,v in vars(args).items() if v and k not in filter_out_params}
+            logging.info('querying with parameters: {}'.format(params))
 
             # subclass ArgumentParser to make this happen automatically
             # it seems to stop using the `choices` parameter if nargs is defined
@@ -118,7 +119,6 @@ def main():
             "Process: %(process)d %(processName)s] %(asctime)s %(message)s")
         logging.getLogger('requests').setLevel(logging.WARNING)
         logging.getLogger('urllib3').setLevel(logging.WARNING)
-        logging.info('querying with parameters: {}'.format(params))
 
     args.func(args)
 
