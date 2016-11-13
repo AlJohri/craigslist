@@ -77,4 +77,4 @@ def parse_post(post):
     })
 
 from craigslist._search.jsonsearch.sync import jsonsearch
-from craigslist._search.jsonsearch.async import jsonsearch as async_jsonsearch
+# from craigslist._search.jsonsearch.async import jsonsearch as async_jsonsearch
