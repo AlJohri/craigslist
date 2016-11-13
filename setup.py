@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
 
-import pypandoc
 from setuptools import setup, find_packages
 
-long_description = pypandoc.convert('README.md', 'rst')
-long_description = long_description.replace("\r","")
+readme = open('README.rst').read()
 
 setup(
     name='craigslist',
     version='0.1.0',
     description='Python wrapper for craigslist.',
-    long_description=long_description,
+    long_description=readme,
     author='Al Johri',
     author_email='al.johri@gmail.com',
     url='https://github.com/AlJohri/craigslist',
