@@ -3,8 +3,8 @@ python:
   - "3.5"
   - "3.6-dev"
 install: 
-  - pip install -r requirements-dev.txt
   - pip install .
+  - pip install -r requirements-dev.txt
 script:
   - pytest
   - coverage run --source craigslist -m pytest
