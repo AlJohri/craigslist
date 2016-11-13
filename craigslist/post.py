@@ -7,11 +7,6 @@ logger = logging.getLogger(__name__)
 DetailPost = namedtuple('DetailPost', [
     'full_title', 'address'])
 
-async def async_process_post_url(url):
-    logger.debug("downloading %s" % url)
-    body = await get(url)
-    return process_post_url_output(body)
-
 def process_post_url_output(body):
     doc = lxml.html.fromstring(body)
     lxml.html.tostring(doc.cssselect("#postingbody")[0])
