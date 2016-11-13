@@ -21,6 +21,12 @@ def test_search_apa_with_clusters():
     for post in islice(gen, 0, 110): # force getting at least one cluster
         pass
 
+def test_search_with_debug_executor():
+    from itertools import islice
+    gen = search('washingtondc', 'apa', postal=20071, search_distance=1, executor_class='craigslist.io.DebugExecutor')
+    for post in islice(gen, 0, 110): # force getting at least one cluster
+        pass
+
 @vcr.use_cassette()
 def test_search_sss():
     gen = search('vancouver', 'sss', query='shoes', condition=[10,20], hasPic=1, max_price=20)
