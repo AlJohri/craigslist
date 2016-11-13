@@ -42,7 +42,8 @@ def cli():
     def create_search_parser(parent_subparsers, shared_parsers=[]):
 
         def cli_search(args):
-            filter_out_params = ['verbose', 'command', 'area', 'category']
+            filter_out_params = [
+                'verbose', 'command', 'area', 'category', 'detail', 'executor_class', 'max_workers']
             params = {k:v for k,v in vars(args).items() if v and k not in filter_out_params}
             logging.info('querying with parameters: {}'.format(params))
 
@@ -57,7 +58,13 @@ def cli():
                     mapping = search_arguments[k].get('choices')
                     params[k] = [mapping[x] for x in v]
             posts = itertools.islice(
-                search(args.area, args.category, **params), 0, args.limit)
+                search(
+                    args.area,
+                    args.category,
+                    get_detailed_posts=args.detail,
+                    executor_class=args.executor_class,
+                    max_workers=args.max_workers,
+                    **params), 0, args.limit)
             try:
                 for post in posts:
                     print(json.dumps(post._asdict()))
@@ -83,7 +90,8 @@ def cli():
 
         parser.add_argument('--limit', type=int)
         parser.add_argument('--detail', action="store_true")
-        parser.add_argument('--executor_class')
+        parser.add_argument('--executor_class', default='concurrent.futures.ThreadPoolExecutor')
+        parser.add_argument('--max_workers', default=10)
         parser.add_argument('--cachedir', help='Cache directory. Defaults to ~/.craigslist')
         parser.add_argument('--nocache', action="store_false", dest='cache', default=True)
         parser.set_defaults(func=cli_search)

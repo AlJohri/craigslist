@@ -1,5 +1,15 @@
-from craigslist.models import RegularSearchPost
+from collections import namedtuple
 from craigslist._search import get_query_url
+
+RegularSearchPost = namedtuple('RegularSearchPost', [
+    'id',
+    'title',
+    'url',
+    'repost_id',
+    'price',
+    'bedrooms',
+    'date',
+    'area'])
 
 def regularsearch(area, sort="date", **kwargs):
     doc = lxml.html.fromstring(requests.get(get_query_url(

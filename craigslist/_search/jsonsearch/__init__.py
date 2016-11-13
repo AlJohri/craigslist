@@ -1,11 +1,32 @@
 import json
 import logging
+from collections import namedtuple
 from datetime import datetime, timezone
-from craigslist.models import JSONSearchCluster, JSONSearchPost
 from craigslist.utils import cdn_url_to_http
 from craigslist.exceptions import CraigslistException
 
 logger = logging.getLogger(__name__)
+
+JSONSearchPost = namedtuple('JSONSearchPost', [
+    'id',
+    'title',
+    'url',
+    'category_id',
+    'thumbnail',
+    'longitude',
+    'latitude',
+    'date',
+    'price',
+    'bedrooms'])
+
+JSONSearchCluster = namedtuple('JSONSearchCluster', [
+    'id',
+    'url',
+    'longitude',
+    'latitude',
+    'posting_ids',
+    'num_posts',
+    'date'])
 
 def parse_cluster_url_output(body):
     try:
