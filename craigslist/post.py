@@ -93,7 +93,7 @@ def process_post_url_output(body):
     full_title = " ".join([x.text_content() for x in doc.cssselect("h2.postingtitle span.postingtitletext")[0].getchildren()[:-1]])
     short_title = doc.cssselect("h2.postingtitle span.postingtitletext #titletextonly")[0].text
     # TODO: deal with international prices
-    price = doc.cssselect("h2.postingtitle span.postingtitletext .price")[0].text.replace('$')
+    price = doc.cssselect("h2.postingtitle span.postingtitletext .price")[0].text.replace('$', '')
 
     try:
         housing_el = doc.cssselect("h2.postingtitle span.postingtitletext .housing")[0]
