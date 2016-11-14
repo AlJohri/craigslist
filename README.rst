@@ -1,7 +1,12 @@
 craigslist [**pre-alpha**]
 ==========================
 
-|Travis CI Status| |Coverage Status|
+.. image:: https://travis-ci.org/AlJohri/craigslist.svg?branch=master
+:target: https://travis-ci.org/AlJohri/craigslist?branch=master
+
+.. image:: https://coveralls.io/repos/github/AlJohri/craigslist/badge.svg?branch=master
+:target: https://coveralls.io/github/AlJohri/craigslist?branch=master
+
 
 Python wrapper for craigslist.
 
@@ -76,8 +81,3 @@ Disclaimer
 -  This library is not associated with Craigslist.
 -  Please read the Craigslist `terms of
    use <https://www.craigslist.org/about/terms.of.use.en>`__.
-
-.. |Travis CI Status| image:: https://travis-ci.org/AlJohri/craigslist.svg?branch=master
-   :target: https://travis-ci.org/AlJohri/craigslist
-.. |Coverage Status| image:: https://coveralls.io/repos/github/AlJohri/craigslist/badge.svg?branch=master
-   :target: https://coveralls.io/github/AlJohri/craigslist?branch=master
