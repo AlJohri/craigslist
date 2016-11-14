@@ -71,7 +71,12 @@ def cli():
             try:
                 for post in posts:
                     print(json.dumps(post._asdict()))
+                # TODO: this is wrong, if I want to limit, I need to do it
+                # in some other way than by using islice
+                # maybe I can using the signal library to send a signal?
+                # https://docs.python.org/3/library/signal.html
                 # executor.shutdown(wait=False)
+                # sys.exit()
             except CraigslistException as e:
                 print(t.red(str(e)))
                 sys.exit()

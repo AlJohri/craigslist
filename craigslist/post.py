@@ -7,7 +7,7 @@ from craigslist.utils import get_only_first_or_none
 logger = logging.getLogger(__name__)
 
 DetailPost = namedtuple('DetailPost', [
-    'full_title', 'short_title', 'hood', 'num_bedrooms', 'sqftage',
+    'full_title', 'short_title', 'hood', 'num_bedrooms', 'sqftage', 'price',
     'body_html', 'body_text', 'address'])
 
 # http://washingtondc.craigslist.org/doc/apa/5870605045.html
@@ -92,21 +92,24 @@ def process_post_url_output(body):
     doc = lxml.html.fromstring(body)
     full_title = " ".join([x.text_content() for x in doc.cssselect("h2.postingtitle span.postingtitletext")[0].getchildren()[:-1]])
     short_title = doc.cssselect("h2.postingtitle span.postingtitletext #titletextonly")[0].text
-    price = doc.cssselect("h2.postingtitle span.postingtitletext .price")[0].text
+    # TODO: deal with international prices
+    price = doc.cssselect("h2.postingtitle span.postingtitletext .price")[0].text.replace('$')
 
     try:
         housing_el = doc.cssselect("h2.postingtitle span.postingtitletext .housing")[0]
     except IndexError:
         housing_el = None
 
-    try:
-      num_bedrooms, area = parse_housing_el(housing_el.text.replace('/ ', '')) if housing_el is not None else None, None
-    except Exception:
-      print(housing_el.text)
-      num_bedrooms, area = None, None
+    if housing_el is not None:
+        try:
+            num_bedrooms, area = parse_housing_el(housing_el.text.replace('/ ', ''))
+        except Exception:
+            num_bedrooms, area = None, None
+    else:
+        num_bedrooms, area = None, None
 
     try:
-      hood = doc.cssselect("h2.postingtitle span.postingtitletext #titletextonly + small")[0].text.strip().lstrip('(').rstrip(')')
+        hood = doc.cssselect("h2.postingtitle span.postingtitletext #titletextonly + small")[0].text.strip().lstrip('(').rstrip(')')
     except IndexError:
         hood = None
 
@@ -128,6 +131,7 @@ def process_post_url_output(body):
         hood=hood,
         num_bedrooms=num_bedrooms,
         sqftage=area,
+        price=price,
         body_html=body_html,
         body_text=body_text,
         address=address)
@@ -138,5 +142,9 @@ def get_post(post_url, get):
 def get_posts(post_urls, executor, get):
     futures = (executor.submit(
         process_post_url, url, get) for url in post_urls)
-    yield from (future.result() for future in as_completed(futures))
+    try:
+        yield from (future.result() for future in as_completed(futures))
+    except KeyboardInterrupt:
+        for future in futures:
+            future.cancel()
 

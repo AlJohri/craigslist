@@ -52,14 +52,15 @@ def search(
 
     executor = executor or make_executor(executor_class, max_workers)
 
-    if type_ == "jsonsearch":
-        search_gen = jsonsearch(
-            area, category, type_, cache, cachedir, executor, get, **kwargs)
-    elif type_ == "regularsearch":
-        search_gen = regularsearch(
-            area, category, type_, cache, cachedir, executor, get, **kwargs)
-    else:
-        raise Exception("unknown search type")
+    search_funcs = {"jsonsearch": jsonsearch, "regularsearch": regularsearch}
+
+    try:
+        search_func = search_funcs[type_]
+    except IndexError:
+        raise Exception("unknown search type: {}".format(type_))
+
+    search_gen = search_func(
+        area, category, type_, cache, cachedir, executor, get, **kwargs)
 
     if get_detailed_posts:
         ret_gen = get_posts(extract_post_urls(search_gen), executor, get)

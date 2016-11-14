@@ -20,12 +20,16 @@ def jsonsearch(
     **kwargs):
 
     def process_clusters(clusters, executor):
-        futures = [executor.submit(
-            process_cluster_url, cluster.url, get) for cluster in clusters]
-        for future in as_completed(futures):
-            posts, clusters = future.result()
-            yield from posts
-            process_clusters(clusters, executor)
+        futures = (executor.submit(
+            process_cluster_url, cluster.url, get) for cluster in clusters)
+        try:
+            for future in as_completed(futures):
+                posts, clusters = future.result()
+                yield from posts
+                process_clusters(clusters, executor)
+        except KeyboardInterrupt:
+            for future in futures:
+                future.cancel()
 
     url = get_query_url(area, category, "jsonsearch", sort=sort, **kwargs)
     posts, clusters = process_cluster_url(url, get)
