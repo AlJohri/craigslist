@@ -101,23 +101,11 @@ def process_post_url_output(body):
         body_text=body_text,
         address=address)
 
+def get_post(post_url, get):
+  return process_post_url(post_url, get)
 
-def get_posts(posts_or_post_ids, executor, get):
-
-    def get_post_url(post_or_post_id):
-      if isinstance(post_or_post_id, int):
-          return "https" + post_or_post_id # TODO
-      elif hasattr(post_or_post_id, 'url'):
-          return post_or_post_id.url
-      else:
-          raise TypeError("get needs a post or post id. "
-                          "you gave: {}".format(post_or_post_id))
-
-    futures = (
-        executor.submit(
-            process_post_url, get_post_url(x), get) for x in posts_or_post_ids)
-
-    for future in as_completed(futures):
-        post = future.result()
-        yield post
+def get_posts(post_urls, executor, get):
+    futures = (executor.submit(
+        process_post_url, url, get) for url in post_urls)
+    yield from (future.result() for future in as_completed(futures))
 

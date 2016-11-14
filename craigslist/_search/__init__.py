@@ -41,6 +41,9 @@ def search(
     max_workers=None,
     **kwargs):
 
+    def extract_post_urls(posts):
+        yield from (post.url for post in posts)
+
     if isinstance(executor_class, str):
         executor_class = import_class(executor_class)
     executor = executor_class(max_workers=max_workers)
@@ -54,4 +57,7 @@ def search(
     else:
         raise Exception("unknown search type")
 
-    return get_posts(search_gen, executor, get) if get_detailed_posts else search_gen
+    if get_detailed_posts:
+        return get_posts(extract_post_urls(search_gen), executor, get)
+    else:
+        return search_gen
