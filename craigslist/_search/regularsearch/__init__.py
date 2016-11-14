@@ -23,9 +23,6 @@ def regularsearch(area, sort="date", **kwargs):
         num_posts_on_page = get_number_of_posts_on_current_page_from_response(doc)
         yield from get_posts_from_response(doc)
 
-async def async_regularsearch():
-    pass
-
 def get_current_offset_from_response(doc):
     return int(doc.cssselect("#searchform span.pagenum span.rangeFrom")[0].text)
 
@@ -38,6 +35,41 @@ def get_num_total_posts_from_response(doc):
 def get_posts_from_response(doc):
     for post in doc.cssselect("#sortable-results > div.rows > p"):
         yield parse_post(post)
+
+"""
+<li class="result-row" data-pid="5845148702" data-repost-of="4498926447">
+    <a href="/mld/apa/5845148702.html" class="result-image gallery" data-ids="1:00q0q_5EtzvO5E6uB,1:01515_j7ikj9nPJw5,1:00S0S_kakmbFGH9PU,1:00p0p_duCoSkucViU,1:00K0K_d0X3UCh9eoZ,1:00m0m_6mGTuKuRSPD,1:00A0A_e6vzdNg86YN">
+        <span class="result-price">$1500</span>
+    </a>
+    <p class="result-info">
+        <span class="icon icon-star" role="button" title="save this post in your favorites list">
+            <span class="screen-reader-text">favorite this post</span>
+        </span>
+        <time class="result-date" datetime="2016-11-14 02:34" title="Mon 14 Nov 02:34:33 AM">Nov 14</time>
+        <a href="/mld/apa/5845148702.html" data-id="5845148702" class="result-title hdrlnk">Cozy Rambler - Available Upon Approval</a>
+        <span class="result-meta">
+            <span class="result-price">$1500</span>
+            <span class="housing">
+                3br -
+                1000ft<sup>2</sup> -
+            </span>
+            <span class="result-hood"> (District Heights, MDD)</span>
+            <span class="result-tags">
+                pic
+                <span class="maptag" data-pid="5845148702">map</span>
+            </span>
+            <span class="banish icon icon-trash" role="button">
+                <span class="screen-reader-text">hide this posting</span>
+            </span>
+            <span class="unbanish icon icon-trash red" role="button" aria-hidden="true"></span>
+            <a href="#" class="restore-link">
+                <span class="restore-narrow-text">restore</span>
+                <span class="restore-wide-text">restore this posting</span>
+            </a>
+        </span>
+    </p>
+</li>
+"""
 
 def parse_post(post):
     pid = int(post.get('data-pid'))

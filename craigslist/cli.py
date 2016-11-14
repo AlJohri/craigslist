@@ -94,6 +94,7 @@ def cli():
         parser.add_argument('--max_workers', default=10)
         parser.add_argument('--cachedir', help='Cache directory. Defaults to ~/.craigslist')
         parser.add_argument('--nocache', action="store_false", dest='cache', default=True)
+        parser.add_argument('--debug', dest='executor_class', action='store_const', const='craigslist.io.DebugExecutor')
         parser.set_defaults(func=cli_search)
 
     def create_list_parser(parent_subparsers, shared_parsers=[]):
