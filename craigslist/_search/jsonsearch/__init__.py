@@ -28,6 +28,11 @@ JSONSearchCluster = namedtuple('JSONSearchCluster', [
     'num_posts',
     'date'])
 
+def process_cluster_url(url, get):
+    logger.debug("downloading %s" % url)
+    body = get(url)
+    return parse_cluster_url_output(body)
+
 def parse_cluster_url_output(body):
     try:
         items, meta = json.loads(body)
@@ -51,19 +56,19 @@ def parse_cluster_url_output(body):
 
 def parse_cluster(cluster, baseurl):
     return JSONSearchCluster(**{
-        'id': cluster['GeoCluster'],
+        'id': int(cluster['GeoCluster']),
         'url': baseurl + cluster['url'],
         'longitude': cluster['Longitude'],
         'latitude': cluster['Latitude'],
         'num_posts': cluster['NumPosts'],
-        'posting_ids': cluster['PostingID'].split(','),
+        'posting_ids': [int(x) for x in cluster['PostingID'].split(',')],
         'date': datetime.fromtimestamp(
             float(cluster['PostedDate']), timezone.utc).isoformat()
     })
 
 def parse_post(post):
     return JSONSearchPost(**{
-        'id': post['PostingID'],
+        'id': int(post['PostingID']),
         'title': post['PostingTitle'],
         'url': cdn_url_to_http(post['PostingURL']),
         'category_id': post['CategoryID'],

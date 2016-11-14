@@ -1,6 +1,9 @@
+import os
 from urllib.parse import urlencode
-from craigslist.utils import cdn_url_to_http
+from craigslist.utils import cdn_url_to_http, import_class
 from craigslist.data import get_areas
+from craigslist.io import requests_get
+from craigslist.post import get_posts
 
 def get_url_base(area):
     areas = get_areas()
@@ -25,3 +28,30 @@ def get_query_url(area, category, type_, offset=0, sort="date", **kwargs):
 
 from craigslist._search.jsonsearch import jsonsearch #, async_jsonsearch
 from craigslist._search.regularsearch import regularsearch #, async_regularsearch
+
+def search(
+    area,
+    category,
+    type_="jsonsearch",
+    get_detailed_posts=False,
+    cache=True,
+    cachedir=os.path.expanduser('~'),
+    executor_class='concurrent.futures.ThreadPoolExecutor',
+    get=requests_get,
+    max_workers=None,
+    **kwargs):
+
+    if isinstance(executor_class, str):
+        executor_class = import_class(executor_class)
+    executor = executor_class(max_workers=max_workers)
+
+    if type_ == "jsonsearch":
+        search_gen = jsonsearch(
+            area, category, type_, cache, cachedir, executor, get, **kwargs)
+    elif type_ == "regularsearch":
+        search_gen = regularsearch(
+            area, category, type_, cache, cachedir, executor, get, **kwargs)
+    else:
+        raise Exception("unknown search type")
+
+    return get_posts(search_gen, executor, get) if get_detailed_posts else search_gen

@@ -1,6 +1,7 @@
 import logging
 import lxml.html
 from collections import namedtuple
+from concurrent.futures import as_completed
 
 logger = logging.getLogger(__name__)
 
@@ -72,6 +73,11 @@ DetailPost = namedtuple('DetailPost', [
 </section>
 """
 
+def process_post_url(url, get):
+    logger.debug("downloading %s" % url)
+    body = get(url)
+    return process_post_url_output(body)
+
 def process_post_url_output(body):
     doc = lxml.html.fromstring(body)
     full_title = " ".join([x.text_content() for x in doc.cssselect("h2.postingtitle span.postingtitletext")[0].getchildren()[:-1]])
@@ -94,3 +100,24 @@ def process_post_url_output(body):
         body_html=body_html,
         body_text=body_text,
         address=address)
+
+
+def get_posts(posts_or_post_ids, executor, get):
+
+    def get_post_url(post_or_post_id):
+      if isinstance(post_or_post_id, int):
+          return "https" + post_or_post_id # TODO
+      elif hasattr(post_or_post_id, 'url'):
+          return post_or_post_id.url
+      else:
+          raise TypeError("get needs a post or post id. "
+                          "you gave: {}".format(post_or_post_id))
+
+    futures = (
+        executor.submit(
+            process_post_url, get_post_url(x), get) for x in posts_or_post_ids)
+
+    for future in as_completed(futures):
+        post = future.result()
+        yield post
+

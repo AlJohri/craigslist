@@ -11,18 +11,6 @@ RegularSearchPost = namedtuple('RegularSearchPost', [
     'date',
     'area'])
 
-def regularsearch(area, sort="date", **kwargs):
-    doc = lxml.html.fromstring(requests.get(get_query_url(
-        area, "search", offset=0, sort=sort, **kwargs)))
-    num_total_posts = get_num_total_posts_from_response(doc)
-    num_posts_on_page = get_number_of_posts_on_current_page_from_response(doc)
-    yield from get_posts_from_response(doc)
-    for offset in range(100, num_total_posts, 100):
-        doc = lxml.html.fromstring(requests.get(get_query_url(
-            area, "search", offset=offset, sort=sort, **kwargs)))
-        num_posts_on_page = get_number_of_posts_on_current_page_from_response(doc)
-        yield from get_posts_from_response(doc)
-
 def get_current_offset_from_response(doc):
     return int(doc.cssselect("#searchform span.pagenum span.rangeFrom")[0].text)
 
@@ -31,10 +19,6 @@ def get_number_of_posts_on_current_page_from_response(doc):
 
 def get_num_total_posts_from_response(doc):
     return int(doc.cssselect("#searchform span.pagenum span.totalcount")[0].text)
-
-def get_posts_from_response(doc):
-    for post in doc.cssselect("#sortable-results > div.rows > p"):
-        yield parse_post(post)
 
 """
 <li class="result-row" data-pid="5845148702" data-repost-of="4498926447">
@@ -97,3 +81,17 @@ def parse_post(post):
         "date": date,
         "area": area,
     })
+
+def process_page_url(url, get):
+    logger.debug("downloading %s" % url)
+    body = get(url)
+    return parse_page_url_output(body)
+
+# def get_posts_from_response(doc):
+#     for post in doc.cssselect("#sortable-results > div.rows > p"):
+#         yield parse_post(post)
+
+def parse_page_url_output(body):
+    return body
+
+from craigslist._search.regularsearch.sync import regularsearch
