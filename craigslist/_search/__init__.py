@@ -56,7 +56,7 @@ def search(
 
     try:
         search_func = search_funcs[type_]
-    except IndexError:
+    except IndexError: # pragma: no cover
         raise Exception("unknown search type: {}".format(type_))
 
     search_gen = search_func(

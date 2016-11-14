@@ -1,1 +1,1 @@
-from craigslist.api.sync import search
+from craigslist.api.sync import search, get

@@ -1,13 +1,15 @@
+import re
 import logging
 import lxml.html
 from collections import namedtuple
 from concurrent.futures import as_completed
 from craigslist.utils import get_only_first_or_none
+from craigslist.io import requests_get
 
 logger = logging.getLogger(__name__)
 
 DetailPost = namedtuple('DetailPost', [
-    'full_title', 'short_title', 'hood', 'num_bedrooms', 'sqftage', 'price',
+    'id', 'repost_id', 'url', 'full_title', 'short_title', 'hood', 'num_bedrooms', 'sqftage', 'price',
     'body_html', 'body_text', 'address'])
 
 # http://washingtondc.craigslist.org/doc/apa/5870605045.html
@@ -89,7 +91,14 @@ def process_post_url(url, get):
     return process_post_url_output(body)
 
 def process_post_url_output(body):
+    id_ = int(re.search(r'var pID = "(\d+)";', body).groups()[0])
+    try:
+        repost_id = re.search(r'var repost_of = (\d+);', body).groups()[0]
+    except AttributeError:
+        repost_id = None
+
     doc = lxml.html.fromstring(body)
+    url = doc.cssselect("link[rel=canonical]")[0].get('href')
     full_title = " ".join([x.text_content() for x in doc.cssselect("h2.postingtitle span.postingtitletext")[0].getchildren()[:-1]])
     short_title = doc.cssselect("h2.postingtitle span.postingtitletext #titletextonly")[0].text
     # TODO: deal with international prices
@@ -126,6 +135,9 @@ def process_post_url_output(body):
     # doc.cssselect("div.mapAndAttrs p.attrgroup") ????
     # [a.get('href') for a in doc.cssselect("#thumbs a")]
     return DetailPost(
+        id=id_,
+        repost_id=repost_id,
+        url=url,
         full_title=full_title,
         short_title=short_title,
         hood=hood,
@@ -136,7 +148,7 @@ def process_post_url_output(body):
         body_text=body_text,
         address=address)
 
-def get_post(post_url, get):
+def get_post(post_url, get=requests_get):
   return process_post_url(post_url, get)
 
 def get_posts(post_urls, executor, get):
@@ -144,7 +156,7 @@ def get_posts(post_urls, executor, get):
         process_post_url, url, get) for url in post_urls)
     try:
         yield from (future.result() for future in as_completed(futures))
-    except KeyboardInterrupt:
+    except KeyboardInterrupt: # pragma: no cover
         for future in futures:
             future.cancel()
 

@@ -27,7 +27,7 @@ def jsonsearch(
                 posts, clusters = future.result()
                 yield from posts
                 process_clusters(clusters, executor)
-        except KeyboardInterrupt:
+        except KeyboardInterrupt:  # pragma: no cover
             for future in futures:
                 future.cancel()
 
