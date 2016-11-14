@@ -12,6 +12,7 @@ from craigslist import search
 from craigslist.data import get_areas, DATA_FOLDER
 from craigslist.exceptions import CraigslistException
 from craigslist.utils import t
+from craigslist._search import make_executor
 
 def cli():
     global_description = """
@@ -42,8 +43,10 @@ def cli():
     def create_search_parser(parent_subparsers, shared_parsers=[]):
 
         def cli_search(args):
+            # TODO: make this a whitelist not a blacklist for starters
             filter_out_params = [
-                'verbose', 'command', 'area', 'category', 'detail', 'executor_class', 'max_workers']
+                'verbose', 'command', 'area', 'category', 'detail', 'executor_class', 'max_workers',
+                'limit', 'cache', 'func']
             params = {k:v for k,v in vars(args).items() if v and k not in filter_out_params}
             logging.info('querying with parameters: {}'.format(params))
 
@@ -57,17 +60,18 @@ def cli():
 
                     mapping = search_arguments[k].get('choices')
                     params[k] = [mapping[x] for x in v]
+            executor = make_executor(args.executor_class, args.max_workers)
             posts = itertools.islice(
                 search(
                     args.area,
                     args.category,
                     get_detailed_posts=args.detail,
-                    executor_class=args.executor_class,
-                    max_workers=args.max_workers,
+                    executor=executor,
                     **params), 0, args.limit)
             try:
                 for post in posts:
                     print(json.dumps(post._asdict()))
+                # executor.shutdown(wait=False)
             except CraigslistException as e:
                 print(t.red(str(e)))
                 sys.exit()

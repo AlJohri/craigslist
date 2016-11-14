@@ -2,15 +2,25 @@ import logging
 import lxml.html
 from collections import namedtuple
 from concurrent.futures import as_completed
+from craigslist.utils import get_only_first_or_none
 
 logger = logging.getLogger(__name__)
 
 DetailPost = namedtuple('DetailPost', [
-    'full_title', 'short_title', 'body_html', 'body_text', 'address'])
+    'full_title', 'short_title', 'hood', 'num_bedrooms', 'sqftage',
+    'body_html', 'body_text', 'address'])
 
 # http://washingtondc.craigslist.org/doc/apa/5870605045.html
 # http://washingtondc.craigslist.org/fb/wdc/apa/5870605045
 # http://washingtondc.craigslist.org/reply/wdc/apa/5870605045
+
+def parse_housing_el(housing_el_text):
+    housing = [x.strip() for x in housing_el_text.split(" - ") if x.strip()]
+    bedrooms_raw = get_only_first_or_none([x for x in housing if "br" in x])
+    num_bedrooms = int(bedrooms_raw.replace("br", "")) if bedrooms_raw else None
+    area_raw = get_only_first_or_none([x for x in housing if "ft" in x])
+    area = int(area_raw.replace("ft", "")) if area_raw else None
+    return num_bedrooms, area
 
 """
 <h2 class="postingtitle">
@@ -82,6 +92,24 @@ def process_post_url_output(body):
     doc = lxml.html.fromstring(body)
     full_title = " ".join([x.text_content() for x in doc.cssselect("h2.postingtitle span.postingtitletext")[0].getchildren()[:-1]])
     short_title = doc.cssselect("h2.postingtitle span.postingtitletext #titletextonly")[0].text
+    price = doc.cssselect("h2.postingtitle span.postingtitletext .price")[0].text
+
+    try:
+        housing_el = doc.cssselect("h2.postingtitle span.postingtitletext .housing")[0]
+    except IndexError:
+        housing_el = None
+
+    try:
+      num_bedrooms, area = parse_housing_el(housing_el.text.replace('/ ', '')) if housing_el is not None else None, None
+    except Exception:
+      print(housing_el.text)
+      num_bedrooms, area = None, None
+
+    try:
+      hood = doc.cssselect("h2.postingtitle span.postingtitletext #titletextonly + small")[0].text.strip().lstrip('(').rstrip(')')
+    except IndexError:
+        hood = None
+
     try:
         address = doc.cssselect("div.mapaddress")[0].text
     except IndexError:
@@ -97,6 +125,9 @@ def process_post_url_output(body):
     return DetailPost(
         full_title=full_title,
         short_title=short_title,
+        hood=hood,
+        num_bedrooms=num_bedrooms,
+        sqftage=area,
         body_html=body_html,
         body_text=body_text,
         address=address)

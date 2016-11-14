@@ -29,6 +29,11 @@ def get_query_url(area, category, type_, offset=0, sort="date", **kwargs):
 from craigslist._search.jsonsearch import jsonsearch #, async_jsonsearch
 from craigslist._search.regularsearch import regularsearch #, async_regularsearch
 
+def make_executor(executor_class, max_workers=None):
+    if isinstance(executor_class, str):
+        executor_class = import_class(executor_class)
+    return executor_class(max_workers=max_workers)
+
 def search(
     area,
     category,
@@ -36,17 +41,16 @@ def search(
     get_detailed_posts=False,
     cache=True,
     cachedir=os.path.expanduser('~'),
+    executor=None,
     executor_class='concurrent.futures.ThreadPoolExecutor',
-    get=requests_get,
     max_workers=None,
+    get=requests_get,
     **kwargs):
 
     def extract_post_urls(posts):
         yield from (post.url for post in posts)
 
-    if isinstance(executor_class, str):
-        executor_class = import_class(executor_class)
-    executor = executor_class(max_workers=max_workers)
+    executor = executor or make_executor(executor_class, max_workers)
 
     if type_ == "jsonsearch":
         search_gen = jsonsearch(
@@ -58,6 +62,8 @@ def search(
         raise Exception("unknown search type")
 
     if get_detailed_posts:
-        return get_posts(extract_post_urls(search_gen), executor, get)
+        ret_gen = get_posts(extract_post_urls(search_gen), executor, get)
     else:
-        return search_gen
+        ret_gen = search_gen
+
+    return ret_gen
