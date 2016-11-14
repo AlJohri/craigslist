@@ -36,13 +36,13 @@ def process_cluster_url(url, get):
 def parse_cluster_url_output(body):
     try:
         items, meta = json.loads(body)
-    except ValueError as e:
+    except ValueError as e: # pragma: no cover
         raise CraigslistException(
             "could not find items and meta "
             "in json response body: '{}'".format(body))
     try:
         baseurl = cdn_url_to_http(meta['baseurl'])
-    except KeyError as e:
+    except KeyError as e: # pragma: no cover
         raise CraigslistException(
             "could not find baseurl in meta: '{}' "
             "with body:'{}'. probably empty response. "
