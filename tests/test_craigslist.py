@@ -39,6 +39,12 @@ def test_get_url_base():
     with pytest.raises(ValueError) as e_info:
         get_url_base('asdadf')
 
+def test_get_query_url():
+    from craigslist._search import get_query_url
+    assert "https://washingtondc.craigslist.org/jsonsearch/apa" in get_query_url('washingtondc', 'apa', 'jsonsearch')
+    with pytest.raises(ValueError) as e_info:
+        get_query_url('washingtondc', 'errorerrorerror', 'jsonsearch')
+
 def test_import_class():
     from craigslist.utils import import_class
     from concurrent.futures import ThreadPoolExecutor
