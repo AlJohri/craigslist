@@ -14,6 +14,11 @@ def get_areas_mapping():
     areas = response.json()
     return {x['hostname']:x for x in areas}
 
+# http://www.craigslist.org/about/reference
+def get_another_areas_mapping():
+    response = requests.get("http://reference.craigslist.org/Areas")
+    pass
+
 def get_tlds_mapping(areas_mapping):
     """
     create mapping of country to tld (top level domain)
