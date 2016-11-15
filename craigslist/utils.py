@@ -17,7 +17,7 @@ def get_only_first_or_none(lst):
     if len(lst) > 1: raise ValueError("too many values")
     return lst[0] if len(lst) else None
 
-def convert_dict_to_camel_case(d):
+def convert_dict_to_camel_case(d): # pragma: no cover
     from boltons.iterutils import remap
 
     re1 = re.compile(r'(.)([A-Z][a-z]+)')
