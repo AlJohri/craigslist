@@ -1,15 +1,20 @@
 .PHONY: data virtualenv install clean cleandata
+.DELETE_ON_ERROR:
 
-data: craigslist/data/areas.json craigslist/data/arguments.json
+data: craigslist/data/areas.json craigslist/data/categories.json craigslist/data/arguments.json
 
 craigslist/data/areas.json:
-	./scripts/get_areas.py > craigslist/data/areas.json
+	./scripts/get_areas.py > $@
+
+craigslist/data/categories.json:
+	./scripts/get_categories.py > $@
 
 craigslist/data/arguments.json:
-	./scripts/get_arguments.py > craigslist/data/arguments.json
+	./scripts/get_arguments.py > $@
 
 cleandata:
 	rm -f craigslist/data/areas.json
+	rm -f craigslist/data/categories.json
 	rm -f craigslist/data/arguments.json
 
 clean:

@@ -16,7 +16,7 @@ class Argument(BaseArgument):
             kwargs['metavar'] = ''
         return super().__new__(cls, *[kwargs.get(k) for k in cls._fields])
 
-LOCATION = 'washingtondc'
+LOCATION = 'kootenays'
 IGNORE_CHOICES = ['sale_date']
 
 def slugify(s):
@@ -70,7 +70,7 @@ def get_arguments(section):
     return arguments
 
 if __name__ == '__main__':
-    sections = {'ccc', 'hhh', 'sss', 'jjj', 'ggg', 'rrr', 'bbb', 'stp'}
+    sections = {'ccc', 'hhh', 'jjj', 'ggg', 'rrr', 'bbb', 'sss', 'ppp'}
     arguments = [x._asdict() for x in set([argument for section in sections for argument in get_arguments(section)])]
     for argument in arguments:
         argument['choices'] = dict(argument['choices']) if argument.get('choices') else None

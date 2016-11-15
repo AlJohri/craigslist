@@ -1,7 +1,7 @@
 import os
 from urllib.parse import urlencode
 from craigslist.utils import cdn_url_to_http, import_class
-from craigslist.data import get_areas
+from craigslist.data import get_areas, get_categories
 from craigslist.io import requests_get
 from craigslist.post import get_posts
 
@@ -13,6 +13,9 @@ def get_url_base(area):
     return "https://{}.craigslist.{}".format(area, tld)
 
 def get_query_url(area, category, type_, offset=0, sort="date", **kwargs):
+    categories = get_categories()
+    if category not in categories:
+        raise ValueError("unknown category {}".format(category))
     params = {"s": offset, "sort": sort, **kwargs}
     params_expanded = []
     for k,v in params.items():

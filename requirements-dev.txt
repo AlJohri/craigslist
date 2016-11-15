@@ -5,3 +5,4 @@ tldextract==2.0.2
 coverage==4.2
 coveralls==1.1
 pep8==1.7.0
+boltons==16.5.1

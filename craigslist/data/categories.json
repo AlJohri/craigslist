@@ -1,0 +1,1184 @@
+{
+    "abo": {
+        "abbreviation": "abo",
+        "category_id": 86,
+        "description": "apts by owner",
+        "type": "H"
+    },
+    "acc": {
+        "abbreviation": "acc",
+        "category_id": 23,
+        "description": "accounting/finance",
+        "type": "J"
+    },
+    "act": {
+        "abbreviation": "act",
+        "category_id": 35,
+        "description": "activity partners",
+        "type": "C"
+    },
+    "aiv": {
+        "abbreviation": "aiv",
+        "category_id": 89,
+        "description": "apts registration fee",
+        "type": "H"
+    },
+    "aos": {
+        "abbreviation": "aos",
+        "category_id": 106,
+        "description": "automotive services",
+        "type": "B"
+    },
+    "apa": {
+        "abbreviation": "apa",
+        "category_id": 1,
+        "description": "apts/housing for rent",
+        "type": "H"
+    },
+    "app": {
+        "abbreviation": "app",
+        "category_id": 149,
+        "description": "appliances - by owner",
+        "type": "S"
+    },
+    "ard": {
+        "abbreviation": "ard",
+        "category_id": 170,
+        "description": "arts & crafts - by dealer",
+        "type": "S"
+    },
+    "art": {
+        "abbreviation": "art",
+        "category_id": 135,
+        "description": "arts & crafts - by owner",
+        "type": "S"
+    },
+    "atd": {
+        "abbreviation": "atd",
+        "category_id": 169,
+        "description": "antiques - by dealer",
+        "type": "S"
+    },
+    "atq": {
+        "abbreviation": "atq",
+        "category_id": 150,
+        "description": "antiques - by owner",
+        "type": "S"
+    },
+    "ats": {
+        "abbreviation": "ats",
+        "category_id": 70,
+        "description": "artists",
+        "type": "C"
+    },
+    "bab": {
+        "abbreviation": "bab",
+        "category_id": 107,
+        "description": "baby & kid stuff - by owner",
+        "type": "S"
+    },
+    "bad": {
+        "abbreviation": "bad",
+        "category_id": 171,
+        "description": "baby & kid stuff - by dealer",
+        "type": "S"
+    },
+    "bar": {
+        "abbreviation": "bar",
+        "category_id": 42,
+        "description": "barter",
+        "type": "S"
+    },
+    "bbb": {
+        "abbreviation": "bbb",
+        "category_id": null,
+        "description": "services",
+        "type": "B"
+    },
+    "bdp": {
+        "abbreviation": "bdp",
+        "category_id": 198,
+        "description": "bicycle parts - by dealer",
+        "type": "S"
+    },
+    "bfd": {
+        "abbreviation": "bfd",
+        "category_id": 174,
+        "description": "business/commercial - by dealer",
+        "type": "S"
+    },
+    "bfs": {
+        "abbreviation": "bfs",
+        "category_id": 134,
+        "description": "business/commercial - by owner",
+        "type": "S"
+    },
+    "bid": {
+        "abbreviation": "bid",
+        "category_id": 172,
+        "description": "bicycles - by dealer",
+        "type": "S"
+    },
+    "bik": {
+        "abbreviation": "bik",
+        "category_id": 68,
+        "description": "bicycles - by owner",
+        "type": "S"
+    },
+    "biz": {
+        "abbreviation": "biz",
+        "category_id": 4,
+        "description": "small biz ads",
+        "type": "B"
+    },
+    "bkd": {
+        "abbreviation": "bkd",
+        "category_id": 173,
+        "description": "books & magazines - by dealer",
+        "type": "S"
+    },
+    "bks": {
+        "abbreviation": "bks",
+        "category_id": 92,
+        "description": "books & magazines - by owner",
+        "type": "S"
+    },
+    "boa": {
+        "abbreviation": "boa",
+        "category_id": 119,
+        "description": "boats - by owner",
+        "type": "S"
+    },
+    "bod": {
+        "abbreviation": "bod",
+        "category_id": 164,
+        "description": "boats - by dealer",
+        "type": "S"
+    },
+    "bop": {
+        "abbreviation": "bop",
+        "category_id": 197,
+        "description": "bicycle parts - by owner",
+        "type": "S"
+    },
+    "bpd": {
+        "abbreviation": "bpd",
+        "category_id": 202,
+        "description": "boat parts - by dealer",
+        "type": "S"
+    },
+    "bpo": {
+        "abbreviation": "bpo",
+        "category_id": 201,
+        "description": "boat parts - by owner",
+        "type": "S"
+    },
+    "bts": {
+        "abbreviation": "bts",
+        "category_id": 138,
+        "description": "beauty services",
+        "type": "B"
+    },
+    "bus": {
+        "abbreviation": "bus",
+        "category_id": 12,
+        "description": "business/mgmt",
+        "type": "J"
+    },
+    "cal": {
+        "abbreviation": "cal",
+        "category_id": 66,
+        "description": "event calendar",
+        "type": "L"
+    },
+    "cas": {
+        "abbreviation": "cas",
+        "category_id": 62,
+        "description": "casual encounters",
+        "type": "P"
+    },
+    "cbd": {
+        "abbreviation": "cbd",
+        "category_id": 177,
+        "description": "collectibles - by dealer",
+        "type": "S"
+    },
+    "ccc": {
+        "abbreviation": "ccc",
+        "category_id": null,
+        "description": "community",
+        "type": "C"
+    },
+    "cld": {
+        "abbreviation": "cld",
+        "category_id": 176,
+        "description": "clothing & accessories - by dealer",
+        "type": "S"
+    },
+    "clo": {
+        "abbreviation": "clo",
+        "category_id": 94,
+        "description": "clothing & accessories - by owner",
+        "type": "S"
+    },
+    "cls": {
+        "abbreviation": "cls",
+        "category_id": 38,
+        "description": "classes",
+        "type": "E"
+    },
+    "clt": {
+        "abbreviation": "clt",
+        "category_id": 95,
+        "description": "collectibles - by owner",
+        "type": "S"
+    },
+    "cms": {
+        "abbreviation": "cms",
+        "category_id": 207,
+        "description": "cell phone / mobile services",
+        "type": "B"
+    },
+    "com": {
+        "abbreviation": "com",
+        "category_id": 3,
+        "description": "general community",
+        "type": "C"
+    },
+    "cpg": {
+        "abbreviation": "cpg",
+        "category_id": 110,
+        "description": "computer gigs",
+        "type": "G"
+    },
+    "cps": {
+        "abbreviation": "cps",
+        "category_id": 76,
+        "description": "computer services",
+        "type": "B"
+    },
+    "crg": {
+        "abbreviation": "crg",
+        "category_id": 114,
+        "description": "creative gigs",
+        "type": "G"
+    },
+    "crs": {
+        "abbreviation": "crs",
+        "category_id": 77,
+        "description": "creative services",
+        "type": "B"
+    },
+    "csr": {
+        "abbreviation": "csr",
+        "category_id": 100,
+        "description": "customer service",
+        "type": "J"
+    },
+    "ctd": {
+        "abbreviation": "ctd",
+        "category_id": 146,
+        "description": "cars & trucks - by dealer",
+        "type": "S"
+    },
+    "cto": {
+        "abbreviation": "cto",
+        "category_id": 145,
+        "description": "cars & trucks - by owner",
+        "type": "S"
+    },
+    "cwg": {
+        "abbreviation": "cwg",
+        "category_id": 109,
+        "description": "crew gigs",
+        "type": "G"
+    },
+    "cys": {
+        "abbreviation": "cys",
+        "category_id": 158,
+        "description": "cycle services",
+        "type": "B"
+    },
+    "dmg": {
+        "abbreviation": "dmg",
+        "category_id": 113,
+        "description": "domestic gigs",
+        "type": "G"
+    },
+    "edu": {
+        "abbreviation": "edu",
+        "category_id": 57,
+        "description": "education/teaching",
+        "type": "J"
+    },
+    "egr": {
+        "abbreviation": "egr",
+        "category_id": 48,
+        "description": "architect/engineer/cad",
+        "type": "J"
+    },
+    "eld": {
+        "abbreviation": "eld",
+        "category_id": 167,
+        "description": "electronics - by dealer",
+        "type": "S"
+    },
+    "ele": {
+        "abbreviation": "ele",
+        "category_id": 96,
+        "description": "electronics - by owner",
+        "type": "S"
+    },
+    "emd": {
+        "abbreviation": "emd",
+        "category_id": 117,
+        "description": "cds / dvds / vhs - by owner",
+        "type": "S"
+    },
+    "emq": {
+        "abbreviation": "emq",
+        "category_id": 175,
+        "description": "cds / dvds / vhs - by dealer",
+        "type": "S"
+    },
+    "eng": {
+        "abbreviation": "eng",
+        "category_id": 14,
+        "description": "internet engineering",
+        "type": "J"
+    },
+    "etc": {
+        "abbreviation": "etc",
+        "category_id": 15,
+        "description": "et cetera",
+        "type": "J"
+    },
+    "eve": {
+        "abbreviation": "eve",
+        "category_id": 8,
+        "description": "events",
+        "type": "E"
+    },
+    "evg": {
+        "abbreviation": "evg",
+        "category_id": 115,
+        "description": "event gigs",
+        "type": "G"
+    },
+    "evs": {
+        "abbreviation": "evs",
+        "category_id": 79,
+        "description": "event services",
+        "type": "B"
+    },
+    "fbh": {
+        "abbreviation": "fbh",
+        "category_id": 129,
+        "description": "food/beverage/hospitality",
+        "type": "J"
+    },
+    "fee": {
+        "abbreviation": "fee",
+        "category_id": 60,
+        "description": "apts broker fee",
+        "type": "H"
+    },
+    "fgs": {
+        "abbreviation": "fgs",
+        "category_id": 154,
+        "description": "farm & garden services",
+        "type": "B"
+    },
+    "fns": {
+        "abbreviation": "fns",
+        "category_id": 104,
+        "description": "financial services",
+        "type": "B"
+    },
+    "fod": {
+        "abbreviation": "fod",
+        "category_id": 179,
+        "description": "general for sale - by dealer",
+        "type": "S"
+    },
+    "for": {
+        "abbreviation": "for",
+        "category_id": 5,
+        "description": "general for sale - by owner",
+        "type": "S"
+    },
+    "fud": {
+        "abbreviation": "fud",
+        "category_id": 142,
+        "description": "furniture - by dealer",
+        "type": "S"
+    },
+    "fuo": {
+        "abbreviation": "fuo",
+        "category_id": 141,
+        "description": "furniture - by owner",
+        "type": "S"
+    },
+    "ggg": {
+        "abbreviation": "ggg",
+        "category_id": null,
+        "description": "gigs",
+        "type": "G"
+    },
+    "gms": {
+        "abbreviation": "gms",
+        "category_id": 73,
+        "description": "garage & moving sales",
+        "type": "S"
+    },
+    "gov": {
+        "abbreviation": "gov",
+        "category_id": 61,
+        "description": "government",
+        "type": "J"
+    },
+    "grd": {
+        "abbreviation": "grd",
+        "category_id": 133,
+        "description": "farm & garden - by owner",
+        "type": "S"
+    },
+    "grp": {
+        "abbreviation": "grp",
+        "category_id": 91,
+        "description": "groups",
+        "type": "C"
+    },
+    "grq": {
+        "abbreviation": "grq",
+        "category_id": 178,
+        "description": "farm & garden - by dealer",
+        "type": "S"
+    },
+    "hab": {
+        "abbreviation": "hab",
+        "category_id": 152,
+        "description": "health and beauty - by owner",
+        "type": "S"
+    },
+    "had": {
+        "abbreviation": "had",
+        "category_id": 180,
+        "description": "health and beauty - by dealer",
+        "type": "S"
+    },
+    "hea": {
+        "abbreviation": "hea",
+        "category_id": 26,
+        "description": "healthcare",
+        "type": "J"
+    },
+    "hhh": {
+        "abbreviation": "hhh",
+        "category_id": null,
+        "description": "housing",
+        "type": "H"
+    },
+    "hou": {
+        "abbreviation": "hou",
+        "category_id": 2,
+        "description": "apts wanted",
+        "type": "H"
+    },
+    "hsd": {
+        "abbreviation": "hsd",
+        "category_id": 181,
+        "description": "household items - by dealer",
+        "type": "S"
+    },
+    "hsh": {
+        "abbreviation": "hsh",
+        "category_id": 97,
+        "description": "household items - by owner",
+        "type": "S"
+    },
+    "hss": {
+        "abbreviation": "hss",
+        "category_id": 80,
+        "description": "household services",
+        "type": "B"
+    },
+    "hum": {
+        "abbreviation": "hum",
+        "category_id": 54,
+        "description": "human resource",
+        "type": "J"
+    },
+    "hvd": {
+        "abbreviation": "hvd",
+        "category_id": 194,
+        "description": "heavy equipment - by dealer",
+        "type": "S"
+    },
+    "hvo": {
+        "abbreviation": "hvo",
+        "category_id": 193,
+        "description": "heavy equipment - by owner",
+        "type": "S"
+    },
+    "jjj": {
+        "abbreviation": "jjj",
+        "category_id": null,
+        "description": "jobs",
+        "type": "J"
+    },
+    "jwd": {
+        "abbreviation": "jwd",
+        "category_id": 182,
+        "description": "jewelry - by dealer",
+        "type": "S"
+    },
+    "jwl": {
+        "abbreviation": "jwl",
+        "category_id": 120,
+        "description": "jewelry - by owner",
+        "type": "S"
+    },
+    "kid": {
+        "abbreviation": "kid",
+        "category_id": 56,
+        "description": "childcare",
+        "type": "C"
+    },
+    "lab": {
+        "abbreviation": "lab",
+        "category_id": 130,
+        "description": "general labor",
+        "type": "J"
+    },
+    "laf": {
+        "abbreviation": "laf",
+        "category_id": 88,
+        "description": "lost & found",
+        "type": "C"
+    },
+    "lbg": {
+        "abbreviation": "lbg",
+        "category_id": 111,
+        "description": "labor gigs",
+        "type": "G"
+    },
+    "lbs": {
+        "abbreviation": "lbs",
+        "category_id": 82,
+        "description": "labor / hauling / moving",
+        "type": "B"
+    },
+    "lgl": {
+        "abbreviation": "lgl",
+        "category_id": 47,
+        "description": "legal/paralegal",
+        "type": "J"
+    },
+    "lgs": {
+        "abbreviation": "lgs",
+        "category_id": 103,
+        "description": "legal services",
+        "type": "B"
+    },
+    "lss": {
+        "abbreviation": "lss",
+        "category_id": 81,
+        "description": "lessons & tutoring",
+        "type": "B"
+    },
+    "m4m": {
+        "abbreviation": "m4m",
+        "category_id": 33,
+        "description": "men seeking men",
+        "type": "P"
+    },
+    "m4w": {
+        "abbreviation": "m4w",
+        "category_id": 32,
+        "description": "men seeking women",
+        "type": "P"
+    },
+    "mad": {
+        "abbreviation": "mad",
+        "category_id": 183,
+        "description": "materials - by dealer",
+        "type": "S"
+    },
+    "mar": {
+        "abbreviation": "mar",
+        "category_id": 13,
+        "description": "marketing/advertising/pr",
+        "type": "J"
+    },
+    "mas": {
+        "abbreviation": "mas",
+        "category_id": 156,
+        "description": "marine services",
+        "type": "B"
+    },
+    "mat": {
+        "abbreviation": "mat",
+        "category_id": 136,
+        "description": "materials - by owner",
+        "type": "S"
+    },
+    "mcd": {
+        "abbreviation": "mcd",
+        "category_id": 160,
+        "description": "motorcycles/scooters - by dealer",
+        "type": "S"
+    },
+    "mcy": {
+        "abbreviation": "mcy",
+        "category_id": 69,
+        "description": "motorcycles/scooters - by owner",
+        "type": "S"
+    },
+    "med": {
+        "abbreviation": "med",
+        "category_id": 25,
+        "description": "art/media/design",
+        "type": "J"
+    },
+    "mis": {
+        "abbreviation": "mis",
+        "category_id": 63,
+        "description": "missed connections",
+        "type": "P"
+    },
+    "mnu": {
+        "abbreviation": "mnu",
+        "category_id": 128,
+        "description": "manufacturing",
+        "type": "J"
+    },
+    "mob": {
+        "abbreviation": "mob",
+        "category_id": 153,
+        "description": "cell phones - by owner",
+        "type": "S"
+    },
+    "mod": {
+        "abbreviation": "mod",
+        "category_id": 165,
+        "description": "cell phones - by dealer",
+        "type": "S"
+    },
+    "mpd": {
+        "abbreviation": "mpd",
+        "category_id": 196,
+        "description": "motorcycle parts - by dealer",
+        "type": "S"
+    },
+    "mpo": {
+        "abbreviation": "mpo",
+        "category_id": 195,
+        "description": "motorcycle parts - by owner",
+        "type": "S"
+    },
+    "msd": {
+        "abbreviation": "msd",
+        "category_id": 184,
+        "description": "musical instruments - by dealer",
+        "type": "S"
+    },
+    "msg": {
+        "abbreviation": "msg",
+        "category_id": 98,
+        "description": "musical instruments - by owner",
+        "type": "S"
+    },
+    "msr": {
+        "abbreviation": "msr",
+        "category_id": 34,
+        "description": "miscellaneous romance",
+        "type": "P"
+    },
+    "muc": {
+        "abbreviation": "muc",
+        "category_id": 71,
+        "description": "musicians",
+        "type": "C"
+    },
+    "nfb": {
+        "abbreviation": "nfb",
+        "category_id": 85,
+        "description": "apts broker no fee",
+        "type": "H"
+    },
+    "npo": {
+        "abbreviation": "npo",
+        "category_id": 28,
+        "description": "nonprofit",
+        "type": "J"
+    },
+    "ofc": {
+        "abbreviation": "ofc",
+        "category_id": 24,
+        "description": "admin/office",
+        "type": "J"
+    },
+    "off": {
+        "abbreviation": "off",
+        "category_id": 40,
+        "description": "office & commercial",
+        "type": "H"
+    },
+    "pas": {
+        "abbreviation": "pas",
+        "category_id": 155,
+        "description": "pet services",
+        "type": "B"
+    },
+    "pet": {
+        "abbreviation": "pet",
+        "category_id": 37,
+        "description": "pets",
+        "type": "C"
+    },
+    "phd": {
+        "abbreviation": "phd",
+        "category_id": 185,
+        "description": "photo/video - by dealer",
+        "type": "S"
+    },
+    "pho": {
+        "abbreviation": "pho",
+        "category_id": 137,
+        "description": "photo/video - by owner",
+        "type": "S"
+    },
+    "pol": {
+        "abbreviation": "pol",
+        "category_id": 87,
+        "description": "politics",
+        "type": "C"
+    },
+    "ppd": {
+        "abbreviation": "ppd",
+        "category_id": 162,
+        "description": "appliances - by dealer",
+        "type": "S"
+    },
+    "ppp": {
+        "abbreviation": "ppp",
+        "category_id": null,
+        "description": "personals",
+        "type": "P"
+    },
+    "prk": {
+        "abbreviation": "prk",
+        "category_id": 41,
+        "description": "parking & storage",
+        "type": "H"
+    },
+    "ptd": {
+        "abbreviation": "ptd",
+        "category_id": 163,
+        "description": "auto parts - by dealer",
+        "type": "S"
+    },
+    "pts": {
+        "abbreviation": "pts",
+        "category_id": 122,
+        "description": "auto parts - by owner",
+        "type": "S"
+    },
+    "reb": {
+        "abbreviation": "reb",
+        "category_id": 144,
+        "description": "real estate - by broker",
+        "type": "H"
+    },
+    "rej": {
+        "abbreviation": "rej",
+        "category_id": 127,
+        "description": "real estate",
+        "type": "J"
+    },
+    "reo": {
+        "abbreviation": "reo",
+        "category_id": 143,
+        "description": "real estate - by owner",
+        "type": "H"
+    },
+    "res": {
+        "abbreviation": "res",
+        "category_id": 10,
+        "description": "resumes / job wanted",
+        "type": "R"
+    },
+    "ret": {
+        "abbreviation": "ret",
+        "category_id": 27,
+        "description": "retail/wholesale",
+        "type": "J"
+    },
+    "rew": {
+        "abbreviation": "rew",
+        "category_id": 121,
+        "description": "real estate wanted",
+        "type": "H"
+    },
+    "rid": {
+        "abbreviation": "rid",
+        "category_id": 36,
+        "description": "rideshare",
+        "type": "C"
+    },
+    "rnr": {
+        "abbreviation": "rnr",
+        "category_id": 90,
+        "description": "rants & raves",
+        "type": "P"
+    },
+    "roo": {
+        "abbreviation": "roo",
+        "category_id": 18,
+        "description": "rooms & shares",
+        "type": "H"
+    },
+    "rrr": {
+        "abbreviation": "rrr",
+        "category_id": null,
+        "description": "resumes",
+        "type": "R"
+    },
+    "rts": {
+        "abbreviation": "rts",
+        "category_id": 105,
+        "description": "real estate services",
+        "type": "B"
+    },
+    "rvd": {
+        "abbreviation": "rvd",
+        "category_id": 168,
+        "description": "rvs - by dealer",
+        "type": "S"
+    },
+    "rvs": {
+        "abbreviation": "rvs",
+        "category_id": 124,
+        "description": "rvs - by owner",
+        "type": "S"
+    },
+    "sad": {
+        "abbreviation": "sad",
+        "category_id": 50,
+        "description": "systems/networking",
+        "type": "J"
+    },
+    "sbw": {
+        "abbreviation": "sbw",
+        "category_id": 58,
+        "description": "sublet/temp wanted",
+        "type": "H"
+    },
+    "sci": {
+        "abbreviation": "sci",
+        "category_id": 75,
+        "description": "science/biotech",
+        "type": "J"
+    },
+    "sdp": {
+        "abbreviation": "sdp",
+        "category_id": 200,
+        "description": "computer parts - by dealer",
+        "type": "S"
+    },
+    "sec": {
+        "abbreviation": "sec",
+        "category_id": 131,
+        "description": "security",
+        "type": "J"
+    },
+    "sgd": {
+        "abbreviation": "sgd",
+        "category_id": 186,
+        "description": "sporting goods - by dealer",
+        "type": "S"
+    },
+    "sha": {
+        "abbreviation": "sha",
+        "category_id": 19,
+        "description": "room/share wanted",
+        "type": "H"
+    },
+    "sks": {
+        "abbreviation": "sks",
+        "category_id": 83,
+        "description": "skilled trade services",
+        "type": "B"
+    },
+    "sls": {
+        "abbreviation": "sls",
+        "category_id": 49,
+        "description": "sales",
+        "type": "J"
+    },
+    "snd": {
+        "abbreviation": "snd",
+        "category_id": 192,
+        "description": "atvs, utvs, snowmobiles - by dealer",
+        "type": "S"
+    },
+    "snw": {
+        "abbreviation": "snw",
+        "category_id": 191,
+        "description": "atvs, utvs, snowmobiles - by owner",
+        "type": "S"
+    },
+    "sof": {
+        "abbreviation": "sof",
+        "category_id": 21,
+        "description": "software/qa/dba/etc",
+        "type": "J"
+    },
+    "sop": {
+        "abbreviation": "sop",
+        "category_id": 199,
+        "description": "computer parts - by owner",
+        "type": "S"
+    },
+    "spa": {
+        "abbreviation": "spa",
+        "category_id": 126,
+        "description": "salon/spa/fitness",
+        "type": "J"
+    },
+    "spo": {
+        "abbreviation": "spo",
+        "category_id": 93,
+        "description": "sporting goods - by owner",
+        "type": "S"
+    },
+    "sss": {
+        "abbreviation": "sss",
+        "category_id": null,
+        "description": "for sale",
+        "type": "S"
+    },
+    "stp": {
+        "abbreviation": "stp",
+        "category_id": 102,
+        "description": "strictly platonic",
+        "type": "P"
+    },
+    "sub": {
+        "abbreviation": "sub",
+        "category_id": 39,
+        "description": "sublets & temporary",
+        "type": "H"
+    },
+    "swp": {
+        "abbreviation": "swp",
+        "category_id": 65,
+        "description": "housing swap",
+        "type": "H"
+    },
+    "syd": {
+        "abbreviation": "syd",
+        "category_id": 166,
+        "description": "computers - by dealer",
+        "type": "S"
+    },
+    "sys": {
+        "abbreviation": "sys",
+        "category_id": 7,
+        "description": "computers - by owner",
+        "type": "S"
+    },
+    "tad": {
+        "abbreviation": "tad",
+        "category_id": 188,
+        "description": "toys & games - by dealer",
+        "type": "S"
+    },
+    "tag": {
+        "abbreviation": "tag",
+        "category_id": 132,
+        "description": "toys & games - by owner",
+        "type": "S"
+    },
+    "tch": {
+        "abbreviation": "tch",
+        "category_id": 55,
+        "description": "technical support",
+        "type": "J"
+    },
+    "tfr": {
+        "abbreviation": "tfr",
+        "category_id": 52,
+        "description": "tv/film/video/radio",
+        "type": "J"
+    },
+    "thp": {
+        "abbreviation": "thp",
+        "category_id": 148,
+        "description": "therapeutic services",
+        "type": "B"
+    },
+    "ths": {
+        "abbreviation": "ths",
+        "category_id": 84,
+        "description": "therapeutic services",
+        "type": "B"
+    },
+    "tid": {
+        "abbreviation": "tid",
+        "category_id": 161,
+        "description": "tickets - by dealer",
+        "type": "S"
+    },
+    "tix": {
+        "abbreviation": "tix",
+        "category_id": 44,
+        "description": "tickets - by owner",
+        "type": "S"
+    },
+    "tld": {
+        "abbreviation": "tld",
+        "category_id": 187,
+        "description": "tools - by dealer",
+        "type": "S"
+    },
+    "tlg": {
+        "abbreviation": "tlg",
+        "category_id": 108,
+        "description": "talent gigs",
+        "type": "G"
+    },
+    "tls": {
+        "abbreviation": "tls",
+        "category_id": 118,
+        "description": "tools - by owner",
+        "type": "S"
+    },
+    "trb": {
+        "abbreviation": "trb",
+        "category_id": 206,
+        "description": "trailers - by dealer",
+        "type": "S"
+    },
+    "trd": {
+        "abbreviation": "trd",
+        "category_id": 59,
+        "description": "skilled trades/artisan",
+        "type": "J"
+    },
+    "tro": {
+        "abbreviation": "tro",
+        "category_id": 205,
+        "description": "trailers - by owner",
+        "type": "S"
+    },
+    "trp": {
+        "abbreviation": "trp",
+        "category_id": 125,
+        "description": "transportation",
+        "type": "J"
+    },
+    "trv": {
+        "abbreviation": "trv",
+        "category_id": 140,
+        "description": "travel/vacation services",
+        "type": "B"
+    },
+    "vac": {
+        "abbreviation": "vac",
+        "category_id": 99,
+        "description": "vacation rentals",
+        "type": "H"
+    },
+    "vgd": {
+        "abbreviation": "vgd",
+        "category_id": 189,
+        "description": "video gaming - by dealer",
+        "type": "S"
+    },
+    "vgm": {
+        "abbreviation": "vgm",
+        "category_id": 151,
+        "description": "video gaming - by owner",
+        "type": "S"
+    },
+    "vnn": {
+        "abbreviation": "vnn",
+        "category_id": 116,
+        "description": "local news and views",
+        "type": "C"
+    },
+    "vol": {
+        "abbreviation": "vol",
+        "category_id": 29,
+        "description": "volunteers",
+        "type": "C"
+    },
+    "w4m": {
+        "abbreviation": "w4m",
+        "category_id": 31,
+        "description": "women seeking men",
+        "type": "P"
+    },
+    "w4w": {
+        "abbreviation": "w4w",
+        "category_id": 30,
+        "description": "women seeking women",
+        "type": "P"
+    },
+    "wad": {
+        "abbreviation": "wad",
+        "category_id": 190,
+        "description": "wanted - by dealer",
+        "type": "S"
+    },
+    "wan": {
+        "abbreviation": "wan",
+        "category_id": 20,
+        "description": "wanted - by owner",
+        "type": "S"
+    },
+    "web": {
+        "abbreviation": "web",
+        "category_id": 11,
+        "description": "web/html/info design",
+        "type": "J"
+    },
+    "wet": {
+        "abbreviation": "wet",
+        "category_id": 139,
+        "description": "writing / editing / translation",
+        "type": "B"
+    },
+    "wrg": {
+        "abbreviation": "wrg",
+        "category_id": 112,
+        "description": "writing gigs",
+        "type": "G"
+    },
+    "wri": {
+        "abbreviation": "wri",
+        "category_id": 16,
+        "description": "writing/editing",
+        "type": "J"
+    },
+    "wtd": {
+        "abbreviation": "wtd",
+        "category_id": 204,
+        "description": "auto wheels & tires - by dealer",
+        "type": "S"
+    },
+    "wto": {
+        "abbreviation": "wto",
+        "category_id": 203,
+        "description": "auto wheels & tires - by owner",
+        "type": "S"
+    },
+    "zip": {
+        "abbreviation": "zip",
+        "category_id": 101,
+        "description": "free stuff",
+        "type": "S"
+    }
+}
