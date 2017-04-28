@@ -4,6 +4,16 @@
         "choices": null,
         "const": "1",
         "default": null,
+        "dest": "bundleDuplicates",
+        "help": null,
+        "metavar": null,
+        "nargs": null
+    },
+    {
+        "action": "store_const",
+        "choices": null,
+        "const": "1",
+        "default": null,
         "dest": "hasPic",
         "help": null,
         "metavar": null,
@@ -272,38 +282,76 @@
     {
         "action": null,
         "choices": {
-            "1plus_bathrooms": "1",
-            "2plus_bathrooms": "2",
-            "3plus_bathrooms": "3",
-            "4plus_bathrooms": "4",
-            "5plus_bathrooms": "5",
-            "6plus_bathrooms": "6",
-            "7plus_bathrooms": "7",
-            "8plus_bathrooms": "8"
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8"
         },
         "const": null,
         "default": null,
-        "dest": "bathrooms",
-        "help": "Choices are: '1plus_bathrooms', '2plus_bathrooms', '3plus_bathrooms', '4plus_bathrooms', '5plus_bathrooms', '6plus_bathrooms', '7plus_bathrooms', '8plus_bathrooms'",
+        "dest": "max_bathrooms",
+        "help": "Choices are: '1', '2', '3', '4', '5', '6', '7', '8'",
         "metavar": "",
         "nargs": null
     },
     {
         "action": null,
         "choices": {
-            "1plus_bedrooms": "1",
-            "2plus_bedrooms": "2",
-            "3plus_bedrooms": "3",
-            "4plus_bedrooms": "4",
-            "5plus_bedrooms": "5",
-            "6plus_bedrooms": "6",
-            "7plus_bedrooms": "7",
-            "8plus_bedrooms": "8"
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8"
         },
         "const": null,
         "default": null,
-        "dest": "bedrooms",
-        "help": "Choices are: '1plus_bedrooms', '2plus_bedrooms', '3plus_bedrooms', '4plus_bedrooms', '5plus_bedrooms', '6plus_bedrooms', '7plus_bedrooms', '8plus_bedrooms'",
+        "dest": "max_bedrooms",
+        "help": "Choices are: '1', '2', '3', '4', '5', '6', '7', '8'",
+        "metavar": "",
+        "nargs": null
+    },
+    {
+        "action": null,
+        "choices": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8"
+        },
+        "const": null,
+        "default": null,
+        "dest": "min_bathrooms",
+        "help": "Choices are: '1', '2', '3', '4', '5', '6', '7', '8'",
+        "metavar": "",
+        "nargs": null
+    },
+    {
+        "action": null,
+        "choices": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8"
+        },
+        "const": null,
+        "default": null,
+        "dest": "min_bedrooms",
+        "help": "Choices are: '1', '2', '3', '4', '5', '6', '7', '8'",
         "metavar": "",
         "nargs": null
     },

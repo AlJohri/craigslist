@@ -1,4 +1,10 @@
 {
+    "aap": {
+        "abbreviation": "aap",
+        "category_id": null,
+        "description": "all apartments",
+        "type": "H"
+    },
     "abo": {
         "abbreviation": "abo",
         "category_id": 86,

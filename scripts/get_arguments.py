@@ -27,7 +27,7 @@ def get_arguments(section):
     response = requests.get(url)
     doc = lxml.html.fromstring(response.content)
     arguments = []
-    for ultag in doc.cssselect('div.search-options div.searchgroup ul.attr_list'):
+    for ultag in doc.cssselect('div.search-options div.searchgroup ul.list'):
         name = ultag.cssselect('li input')[0].get('name')
         if name not in IGNORE_CHOICES:
             choices = tuple(
@@ -40,7 +40,7 @@ def get_arguments(section):
     for tag in doc.cssselect(
             'div.search-options div.searchgroup > input, '
             'div.search-options div.searchgroup > label > input, '
-            'div.search-options div.searchgroup > ul:not(.js-only):not(.attr_list) > li > label > input',):
+            'div.search-options div.searchgroup > ul:not(.js-only):not(.list) > li > label > input',):
         name = tag.get('name')
         if not name: continue
         type_ = tag.get('type')

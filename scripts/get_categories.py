@@ -54,10 +54,21 @@ top_level_categories = {
     }
 }
 
+# https://newyork.craigslist.org/i/apartments
+missing_categories = {
+    'aap': {
+        'abbreviation': 'aap',
+        'category_id': None,
+        'description': 'all apartments',
+        'type': 'H'
+    }
+}
+
 def get_categories_mapping():
     response = requests.get("http://reference.craigslist.org/Categories")
     categories = [convert_dict_to_camel_case(x) for x in response.json()]
     categories_mapping = {x['abbreviation']:x for x in categories}
+    categories_mapping.update(missing_categories)
     categories_mapping.update(top_level_categories)
     return categories_mapping
 
