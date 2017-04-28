@@ -1,7 +1,7 @@
 .PHONY: data virtualenv install clean cleandata
 .DELETE_ON_ERROR:
 
-data: craigslist/data/areas.json craigslist/data/categories.json craigslist/data/arguments.json
+data: craigslist/data/arguments.json
 
 craigslist/data/areas.json:
 	./scripts/get_areas.py > $@
@@ -9,7 +9,7 @@ craigslist/data/areas.json:
 craigslist/data/categories.json:
 	./scripts/get_categories.py > $@
 
-craigslist/data/arguments.json:
+craigslist/data/arguments.json: craigslist/data/areas.json craigslist/data/categories.json
 	./scripts/get_arguments.py > $@
 
 cleandata:
@@ -20,9 +20,6 @@ cleandata:
 clean:
 	find . -type f -name '*.py[co]' -delete
 	find . -type d -name '__pycache__' -delete
-
-virtualenv:
-	mkvirtualenv craigslist -p python3.6
 
 install:
 	pip install --editable .

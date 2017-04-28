@@ -1,7 +1,9 @@
 import importlib, re
 
 def cdn_url_to_http(url):
-	return "http://" + url.lstrip("//")
+    if url.startswith("//"):
+        return "http://" + url.lstrip("//")
+    return url
 
 # TODO: rename to work with methods too
 def import_class(s):

@@ -51,7 +51,7 @@ See the `examples <./examples>`__ folder.
 
     for post in craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1):
         print(post)
-    
+
     post = craigslist.get('https://washingtondc.craigslist.org/nva/apa/5875729002.html')
 
 Development
@@ -62,7 +62,8 @@ Setup
 
 ::
 
-    make virtualenv install
+    mkvirtualenv craigslist -p python3.6
+    make install
 
 Test
 ~~~~
