@@ -1,8 +1,8 @@
 language: python
 python:
   - "3.5"
-  - "3.6-dev"
-install: 
+  - "3.6"
+install:
   - pip install .
   - pip install -r requirements-dev.txt
 script:
