@@ -2,6 +2,17 @@ import vcr
 import pytest
 import craigslist
 
+# @vcr.use_cassette()
+def test_search_apa():
+    gen = craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1, type_='regularsearch')
+    post = next(gen)
+
+    gen2 = craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1)
+    post2 = next(gen2)
+
+    assert post.id == post2.id
+    assert post.title == post2.title
+
 @pytest.mark.asyncio(forbid_global_loop=False)
 async def test_search_apa_async():
     gen = craigslist.search_async('washingtondc', 'apa', postal=20071, search_distance=1)
@@ -13,11 +24,6 @@ async def test_search_apa_async():
     sort = lambda x: sorted(x, key=lambda y: y.id)
 
     assert sort(posts) == sort(posts2)
-
-# @vcr.use_cassette()
-def test_search_apa():
-    gen = craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1)
-    post = next(gen)
 
 # no vcr (can't use it)
 # figure out some way to make this more testable?

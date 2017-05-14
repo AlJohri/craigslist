@@ -1,4 +1,5 @@
 import os
+import functools
 from urllib.parse import urlencode
 from craigslist.utils import cdn_url_to_http, import_class
 from craigslist.data import get_areas, get_categories
@@ -7,6 +8,7 @@ from craigslist.post import get_posts
 from craigslist.exceptions import (
     CraigslistException, CraigslistValueError)
 
+@functools.lru_cache(maxsize=None)
 def get_url_base(area):
     areas = get_areas()
     if area not in areas:

@@ -1,6 +1,9 @@
 import logging
 from collections import namedtuple
-from craigslist._search import get_query_url
+from craigslist._search import get_query_url, get_url_base
+
+import lxml
+import arrow
 
 logger = logging.getLogger(__name__)
 
@@ -23,16 +26,16 @@ def get_number_of_posts_on_current_page_from_response(doc):
 def get_num_total_posts_from_response(doc):
     return int(doc.cssselect("#searchform span.pagenum span.totalcount")[0].text)
 
-def parse_post(post):
+def parse_post(post, craigslist_area_name):
     pid = int(post.get('data-pid'))
     respost_pid = int(post.get('data-repost-of')) if post.get('data-repost-of') else None
     date = arrow.get(post.cssselect('time')[0].get('datetime'))
-    url = post.cssselect("span > span > a")[0].get('href')
-    title = post.cssselect("span > span > a")[0].text
-    price_el = get_only_first_or_none(post.cssselect("span > span > span.price"))
+    url = get_url_base(craigslist_area_name) + post.cssselect("p.result-info > a")[0].get('href')
+    title = post.cssselect("p.result-info > a")[0].text
+    price_el = get_only_first_or_none(post.cssselect("span.result-meta > span.result-price"))
     price_raw = price_el.text if price_el is not None else None
     price = int(price_raw.replace("$", "")) if price_raw else None
-    housing_el = get_only_first_or_none(post.cssselect("span > span > span.housing"))
+    housing_el = get_only_first_or_none(post.cssselect("p.result-info > span > span.housing"))
     housing = [x.strip() for x in housing_el.text.split("-\n") \
         if x.strip()] if housing_el is not None else []
     bedrooms_raw = get_only_first_or_none([x for x in housing if "br" in x])
@@ -43,7 +46,7 @@ def parse_post(post):
         "id": pid,
         "title": title,
         "url": url,
-        "respost_id": respost_pid,
+        "repost_id": respost_pid,
         "price": price,
         "bedrooms": num_bedrooms,
         "date": date,
@@ -55,9 +58,9 @@ def process_page_url(url, get):
     body = get(url)
     return parse_page_url_output(body)
 
-# def get_posts_from_response(doc):
-#     for post in doc.cssselect("#sortable-results > div.rows > p"):
-#         yield parse_post(post)
+def get_posts_from_response(doc, area):
+    for post in doc.cssselect("#sortable-results > ul.rows > li"):
+        yield parse_post(post, area)
 
 def parse_page_url_output(body):
     return body
@@ -67,6 +70,7 @@ from craigslist.utils import import_class
 from craigslist.io import requests_get
 from craigslist._search import get_query_url
 from craigslist.post import process_post_url
+from craigslist.utils import get_only_first_or_none
 
 def regularsearch(
     area,
@@ -78,12 +82,12 @@ def regularsearch(
     get,
     **kwargs):
     doc = lxml.html.fromstring(get(get_query_url(
-        area, "search", offset=0, sort=sort, **kwargs)))
+        area, category, 'search', offset=0, sort=sort, **kwargs)))
     num_total_posts = get_num_total_posts_from_response(doc)
     num_posts_on_page = get_number_of_posts_on_current_page_from_response(doc)
-    yield from get_posts_from_response(doc)
+    yield from get_posts_from_response(doc, area)
     for offset in range(100, num_total_posts, 100):
         doc = lxml.html.fromstring(get(get_query_url(
-            area, "search", offset=offset, sort=sort, **kwargs)))
+            area, category, 'search', offset=offset, sort=sort, **kwargs)))
         num_posts_on_page = get_number_of_posts_on_current_page_from_response(doc)
         yield from get_posts_from_response(doc)

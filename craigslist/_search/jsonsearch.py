@@ -135,12 +135,16 @@ async def jsonsearch_async(
 
     async def process_clusters(clusters):
         futures = [process_cluster_url(cluster.url) for cluster in clusters]
-        for future in as_completed(futures):
-            posts, clusters = await future
-            for post in posts:
-                yield post
-            async for post in process_clusters(clusters):
-                yield post
+        try:
+            for future in as_completed(futures):
+                posts, clusters = await future
+                for post in posts:
+                    yield post
+                async for post in process_clusters(clusters):
+                    yield post
+        except KeyboardInterrupt: # pragma: no cover
+            for future in futures:
+                future.cancel()
 
     url = get_query_url(area, category, "jsonsearch", sort=sort, **kwargs)
     posts, clusters = await process_cluster_url_async(url, get)
