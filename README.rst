@@ -65,7 +65,7 @@ See the `examples <./examples>`__ folder.
   import craigslist
 
   async def main():
-      async for post in craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1):
+      async for post in craigslist.search_async('washingtondc', 'apa', postal=20071, search_distance=1):
           print(post)
 
   loop = asyncio.get_event_loop()
