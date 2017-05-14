@@ -1,6 +1,7 @@
 import vcr
 import pytest
 import craigslist
+import arrow
 
 def test_search_apa():
     gen = craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1, type_='regularsearch')
@@ -11,7 +12,7 @@ def test_search_apa():
 
     assert post.id == post2.id
     assert post.title == post2.title
-    assert post.date == post2.date
+    assert arrow.get(post.date) == arrow.get(post2.date).replace(second=0)
 
 @pytest.mark.asyncio(forbid_global_loop=False)
 async def test_search_apa_async():

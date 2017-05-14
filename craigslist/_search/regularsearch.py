@@ -29,7 +29,8 @@ def get_num_total_posts_from_response(doc):
 def parse_post(post, craigslist_area_name):
     pid = int(post.get('data-pid'))
     respost_pid = int(post.get('data-repost-of')) if post.get('data-repost-of') else None
-    date = arrow.get(post.cssselect('time')[0].get('datetime')).replace(tzinfo='local').to('utc').isoformat()
+    date_orig = post.cssselect('time')[0].get('datetime')
+    date = arrow.get(date_orig).replace(tzinfo='local').to('utc').isoformat()
     url = get_url_base(craigslist_area_name) + post.cssselect("p.result-info > a")[0].get('href')
     title = post.cssselect("p.result-info > a")[0].text
     price_el = get_only_first_or_none(post.cssselect("span.result-meta > span.result-price"))
