@@ -26,11 +26,6 @@ def parse_housing_el(housing_el_text):
     area = int(area_raw.replace("ft", "")) if area_raw else None
     return num_bedrooms, area
 
-def process_post_url(url, get):
-    logger.debug("downloading %s" % url)
-    body = get(url)
-    return process_post_url_output(body)
-
 def http_to_https(url):
     if url.startswith("http://"):
         return url.replace("http://", "https://", 1)
@@ -97,6 +92,11 @@ def process_post_url_output(body):
         body_text=body_text,
         address=address)
 
+def process_post_url(url, get):
+    logger.debug("downloading %s" % url)
+    body = get(url)
+    return process_post_url_output(body)
+
 def get_post(post_url, get=requests_get):
   return process_post_url(post_url, get)
 
@@ -109,5 +109,10 @@ def get_posts(post_urls, executor, get):
         for future in futures:
             future.cancel()
 
+async def process_post_url_async(url, get):
+    logger.debug("downloading %s" % url)
+    body = await get(url)
+    return process_post_url_output(body)
+
 async def get_post_async(post_url, get=asyncio_get):
-    raise NotImplementedError()
+    return await process_post_url_async(post_url, get)

@@ -83,3 +83,10 @@ def test_get_post():
     post = craigslist.get(url)
     assert post.id == 6129297133
     assert post.url == url
+
+@pytest.mark.asyncio(forbid_global_loop=False)
+async def test_get_post_async():
+    url = 'https://washingtondc.craigslist.org/nva/apa/6129297133.html'
+    post = await craigslist.get_async(url)
+    assert post.id == 6129297133
+    assert post.url == url

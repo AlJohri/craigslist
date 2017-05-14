@@ -68,6 +68,9 @@ See the `examples <./examples>`__ folder.
       async for post in craigslist.search_async('washingtondc', 'apa', postal=20071, search_distance=1):
           print(post)
 
+      # craiglist posts expire. replace the url below with something current
+      post = await craigslist.get_async('https://washingtondc.craigslist.org/nva/apa/5875729002.html')
+
   loop = asyncio.get_event_loop()
   loop.run_until_complete(main())
   loop.close()
