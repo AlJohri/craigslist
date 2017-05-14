@@ -4,7 +4,7 @@ from urllib.parse import urlencode
 from craigslist.utils import cdn_url_to_http, import_class
 from craigslist.data import get_areas, get_categories
 from craigslist.io import requests_get, asyncio_get
-from craigslist.post import get_posts
+from craigslist.post import get_posts, get_posts_async
 from craigslist.exceptions import (
     CraigslistException, CraigslistValueError)
 
@@ -91,6 +91,10 @@ async def search_async(
     get=asyncio_get,
     **kwargs):
 
+    async def extract_post_urls(posts):
+        async for post in posts:
+            yield post.url
+
     search_funcs = {"jsonsearch": jsonsearch_async}
 
     try:
@@ -102,9 +106,9 @@ async def search_async(
         area, category, type_, cache, cachedir, get, **kwargs)
 
     if get_detailed_posts:
-        ret_gen = get_posts(extract_post_urls(search_gen), get)
+        ret_gen = get_posts_async(extract_post_urls(search_gen), get)
     else:
         ret_gen = search_gen
 
-    async for post in search_gen:
+    async for post in ret_gen:
         yield post

@@ -22,17 +22,23 @@ async def test_search_apa_async():
     posts2 = [post for post in gen2]
 
     sort = lambda x: sorted(x, key=lambda y: y.id)
-
     assert sort(posts) == sort(posts2)
 
-# no vcr (can't use it)
-# figure out some way to make this more testable?
 def test_search_apa_with_detail():
     gen = craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1, get_detailed_posts=True)
     post = next(gen)
 
-# no vcr (can't use it)
-# figure out some way to make this more testable?
+@pytest.mark.asyncio(forbid_global_loop=False)
+async def test_search_apa_with_detail_async():
+    gen = craigslist.search_async('washingtondc', 'apa', postal=20071, search_distance=0.1, get_detailed_posts=True)
+    posts = [post async for post in gen]
+
+    gen2 = craigslist.search('washingtondc', 'apa', postal=20071, search_distance=0.1, get_detailed_posts=True)
+    posts2 = [post for post in gen2]
+
+    sort = lambda x: sorted(x, key=lambda y: y.id)
+    assert sort(posts) == sort(posts2)
+
 def test_search_apa_with_clusters():
     from itertools import islice
     gen = craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1)

@@ -1,8 +1,9 @@
 import re
 import logging
 import lxml.html
+import asyncio
+import concurrent.futures
 from collections import namedtuple
-from concurrent.futures import as_completed
 from craigslist.utils import get_only_first_or_none
 from craigslist.io import requests_get, asyncio_get
 from craigslist.exceptions import (
@@ -45,8 +46,12 @@ def process_post_url_output(body):
     url = http_to_https(doc.cssselect("link[rel=canonical]")[0].get('href'))
     full_title = " ".join([x.text_content() for x in doc.cssselect("h2.postingtitle span.postingtitletext")[0].getchildren()[:-1]])
     short_title = doc.cssselect("h2.postingtitle span.postingtitletext #titletextonly")[0].text
-    # TODO: deal with international prices
-    price = doc.cssselect("h2.postingtitle span.postingtitletext .price")[0].text.replace('$', '')
+
+    try:
+        # TODO: deal with international prices
+        price = doc.cssselect("h2.postingtitle span.postingtitletext .price")[0].text.replace('$', '')
+    except IndexError:
+        price = None
 
     try:
         housing_el = doc.cssselect("h2.postingtitle span.postingtitletext .housing")[0]
@@ -100,7 +105,7 @@ def process_post_url(url, get):
 def get_post(post_url, get=requests_get):
   return process_post_url(post_url, get)
 
-def get_posts(post_urls, executor, get):
+def get_posts(post_urls, executor, get=requests_get, as_completed=concurrent.futures.as_completed):
     futures = (executor.submit(
         process_post_url, url, get) for url in post_urls)
     try:
@@ -109,10 +114,20 @@ def get_posts(post_urls, executor, get):
         for future in futures:
             future.cancel()
 
-async def process_post_url_async(url, get):
+async def process_post_url_async(url, get=asyncio_get):
     logger.debug("downloading %s" % url)
     body = await get(url)
     return process_post_url_output(body)
 
 async def get_post_async(post_url, get=asyncio_get):
     return await process_post_url_async(post_url, get)
+
+async def get_posts_async(post_urls, get=asyncio_get, as_completed=asyncio.as_completed):
+    futures = [process_post_url_async(url, get) async for url in post_urls]
+    try:
+        for future in as_completed(futures):
+            post = await future
+            yield post
+    except KeyboardInterrupt: # pragma: no cover
+        for future in futures:
+            future.cancel()
