@@ -45,6 +45,8 @@ API
 
 See the `examples <./examples>`__ folder.
 
+`simple <./examples/simple.py>`__
+
 .. code:: python
 
     import craigslist
@@ -55,20 +57,20 @@ See the `examples <./examples>`__ folder.
     # craiglist posts expire. replace the url below with something current
     post = craigslist.get('https://washingtondc.craigslist.org/nva/apa/5875729002.html')
 
-Or use the async api.
+`async <./examples/async.py>`__
 
-  .. code:: python
+.. code:: python
 
-      import asyncio
-      import craigslist
+  import asyncio
+  import craigslist
 
-      async def main():
-        async for post in craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1):
-            print(post)
+  async def main():
+      async for post in craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1):
+          print(post)
 
-      loop = asyncio.get_event_loop()
-      loop.run_until_complete(main())
-      loop.close()
+  loop = asyncio.get_event_loop()
+  loop.run_until_complete(main())
+  loop.close()
 
 Development
 -----------
