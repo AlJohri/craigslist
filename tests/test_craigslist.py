@@ -2,6 +2,18 @@ import vcr
 import pytest
 import craigslist
 
+@pytest.mark.asyncio
+async def test_search_apa_async():
+    gen = await craigslist.search_async('washingtondc', 'apa', postal=20071, search_distance=1)
+    posts = [post async for post in gen]
+
+    gen2 = craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1)
+    posts2 = [post for post in gen2]
+
+    sort = lambda x: sorted(x, key=lambda y: y.id)
+
+    assert sort(posts) == sort(posts2)
+
 @vcr.use_cassette()
 def test_search_apa():
     gen = craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1)
@@ -61,7 +73,7 @@ def test_cli():
 
 @vcr.use_cassette()
 def test_get_post():
-    url = 'http://washingtondc.craigslist.org/doc/apa/5875689991.html'
+    url = 'https://washingtondc.craigslist.org/nva/apa/6129297133.html'
     post = craigslist.get(url)
-    assert post.id == 5875689991
+    assert post.id == 6129297133
     assert post.url == url

@@ -2,20 +2,22 @@ import os
 from urllib.parse import urlencode
 from craigslist.utils import cdn_url_to_http, import_class
 from craigslist.data import get_areas, get_categories
-from craigslist.io import requests_get
+from craigslist.io import requests_get, asyncio_get
 from craigslist.post import get_posts
+from craigslist.exceptions import (
+    CraigslistException, CraigslistValueError)
 
 def get_url_base(area):
     areas = get_areas()
     if area not in areas:
-        raise ValueError("unknown area {}".format(area))
+        raise CraigslistValueError("unknown area {}".format(area))
     tld = areas[area]['tld']
     return "https://{}.craigslist.{}".format(area, tld)
 
 def get_query_url(area, category, type_, offset=0, sort="date", **kwargs):
     categories = get_categories()
     if category not in categories:
-        raise ValueError("unknown category {}".format(category))
+        raise CraigslistValueError("unknown category {}".format(category))
     params = {"s": offset, "sort": sort, **kwargs}
     params_expanded = []
     for k,v in params.items():
@@ -29,13 +31,13 @@ def get_query_url(area, category, type_, offset=0, sort="date", **kwargs):
         type=type_, category=category, params=urlencode(params_expanded))
     return url
 
-from craigslist._search.jsonsearch import jsonsearch #, async_jsonsearch
-from craigslist._search.regularsearch import regularsearch #, async_regularsearch
-
 def make_executor(executor_class, max_workers=None):
     if isinstance(executor_class, str):
         executor_class = import_class(executor_class)
     return executor_class(max_workers=max_workers)
+
+from craigslist._search.jsonsearch import jsonsearch
+from craigslist._search.regularsearch import regularsearch
 
 def search(
     area,
@@ -55,12 +57,14 @@ def search(
 
     executor = executor or make_executor(executor_class, max_workers)
 
-    search_funcs = {"jsonsearch": jsonsearch, "regularsearch": regularsearch}
+    search_funcs = {
+        "jsonsearch": jsonsearch,
+        "regularsearch": regularsearch}
 
     try:
         search_func = search_funcs[type_]
     except IndexError: # pragma: no cover
-        raise Exception("unknown search type: {}".format(type_))
+        raise CraigslistValueError("unknown search type: {}".format(type_))
 
     search_gen = search_func(
         area, category, type_, cache, cachedir, executor, get, **kwargs)
@@ -71,3 +75,33 @@ def search(
         ret_gen = search_gen
 
     return ret_gen
+
+from craigslist._search.jsonsearch import jsonsearch_async
+
+async def search_async(
+    area,
+    category,
+    type_="jsonsearch",
+    get_detailed_posts=False,
+    cache=True,
+    cachedir=os.path.expanduser('~'),
+    max_workers=None,
+    get=asyncio_get,
+    **kwargs):
+
+    search_funcs = {"jsonsearch": jsonsearch_async}
+
+    try:
+        search_func = search_funcs[type_]
+    except IndexError: # pragma: no cover
+        raise CraigslistValueError("unknown search type: {}".format(type_))
+
+    search_gen = search_func(
+        area, category, type_, cache, cachedir, get, **kwargs)
+
+    if get_detailed_posts:
+        ret_gen = get_posts(extract_post_urls(search_gen), get)
+    else:
+        ret_gen = search_gen
+
+    return search_gen

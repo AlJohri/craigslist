@@ -2,10 +2,10 @@ def requests_get(url):
     import requests
     return requests.get(url).text
 
-# async def asyncio_get():
-#     import aiohttp
-#     async with aiohttp.get(url) as r:
-#         return await r.text()
+async def asyncio_get(url):
+    import aiohttp
+    async with aiohttp.get(url) as r:
+        return await r.text()
 
 # def asyncio_queue():
 #     from asyncio import Queue
