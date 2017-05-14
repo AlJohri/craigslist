@@ -3,7 +3,7 @@ craigslist [**pre-alpha**]
 
 |Travis CI Status| |Coverage Status| |License Status|
 
-Python wrapper for craigslist.
+Python wrapper for craigslist. Requires Python 3.6+.
 
 Install
 -------
