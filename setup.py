@@ -15,7 +15,7 @@ setup(
     license='MIT',
     packages=find_packages(),
     package_data={'craigslist': ['data/*.json']},
-    install_requires=['requests', 'cssselect', 'lxml', 'blessings'],
+    install_requires=['requests', 'cssselect', 'lxml', 'blessings', 'arrow'],
     entry_points={
         'console_scripts': [
             'craigslist=craigslist.cli:main'
