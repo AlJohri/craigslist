@@ -14,7 +14,7 @@ async def test_search_apa_async():
 
     assert sort(posts) == sort(posts2)
 
-@vcr.use_cassette()
+# @vcr.use_cassette()
 def test_search_apa():
     gen = craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1)
     post = next(gen)
@@ -39,7 +39,7 @@ def test_search_with_debug_executor():
     for post in islice(gen, 0, 110): # force getting at least one cluster
         pass
 
-@vcr.use_cassette()
+# @vcr.use_cassette()
 def test_search_sss():
     gen = craigslist.search('vancouver', 'sss', query='shoes', condition=[10,20], hasPic=1, max_price=20)
     post = next(gen)
@@ -71,7 +71,7 @@ def test_cli():
     with pytest.raises(SystemExit) as e_info:
         args = cli()
 
-@vcr.use_cassette()
+# @vcr.use_cassette()
 def test_get_post():
     url = 'https://washingtondc.craigslist.org/nva/apa/6129297133.html'
     post = craigslist.get(url)
