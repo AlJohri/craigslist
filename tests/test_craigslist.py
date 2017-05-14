@@ -2,9 +2,9 @@ import vcr
 import pytest
 import craigslist
 
-@pytest.mark.asyncio
+@pytest.mark.asyncio(forbid_global_loop=False)
 async def test_search_apa_async():
-    gen = await craigslist.search_async('washingtondc', 'apa', postal=20071, search_distance=1)
+    gen = craigslist.search_async('washingtondc', 'apa', postal=20071, search_distance=1)
     posts = [post async for post in gen]
 
     gen2 = craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1)

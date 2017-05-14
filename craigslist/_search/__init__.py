@@ -104,4 +104,5 @@ async def search_async(
     else:
         ret_gen = search_gen
 
-    return search_gen
+    async for post in search_gen:
+        yield post

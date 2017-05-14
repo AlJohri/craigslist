@@ -2,7 +2,7 @@
 
 import craigslist
 
-def main()
+def main():
     for post in craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1):
         print(post)
 
