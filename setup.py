@@ -7,7 +7,7 @@ version = exec(open('craigslist/version.py').read())
 
 setup(
     name='craigslist',
-    version=version,
+    version=__version__,
     description='Python wrapper for craigslist.',
     long_description=readme,
     author='Al Johri',

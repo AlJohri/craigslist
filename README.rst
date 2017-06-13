@@ -10,7 +10,7 @@ Install
 
 ::
 
-    pip3 install craigslist
+    pip3 install --upgrade craigslist
 
 CLI
 ---
