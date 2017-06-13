@@ -38,7 +38,7 @@ For more details, try:
 
 ::
 
-    $ craigslist search --help
+    $ craigslist search
 
 API
 ---
