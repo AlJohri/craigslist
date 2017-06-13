@@ -46,6 +46,7 @@ API
 See the `examples <./examples>`__ folder.
 
 `simple <./examples/simple.py>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: python
 
@@ -58,6 +59,7 @@ See the `examples <./examples>`__ folder.
     post = craigslist.get('https://washingtondc.craigslist.org/nva/apa/5875729002.html')
 
 `async <./examples/async.py>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: python
 
