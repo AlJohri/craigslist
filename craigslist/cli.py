@@ -9,7 +9,7 @@ import logging
 import textwrap
 from os import path
 from craigslist import search
-from craigslist.data import get_areas, DATA_FOLDER
+from craigslist.data import get_areas, get_categories, DATA_FOLDER
 from craigslist.exceptions import CraigslistException
 from craigslist.utils import t
 from craigslist._search import make_executor
@@ -17,8 +17,7 @@ from craigslist._search import make_executor
 class CustomArgumentParser(argparse.ArgumentParser):
     def error(self, message):
         """
-        don't show error message if you just type "pbcli" or
-        "pbcli get" or "pbcli delete"
+        don't show error message if you just type "craigslist"
         """
         messages_to_mute = [
             "the following arguments are required: %s" % word for word in ('command',)
@@ -31,12 +30,15 @@ class CustomArgumentParser(argparse.ArgumentParser):
 def cli():
     global_description = """
     examples:
+    craigslist search worcester apa
+    craigslist search newyork tlg
     craigslist search washingtondc apa --postal 20071 --search_distance 1
     craigslist search newyork aap --postal 10023 --search_distance 1 --hasPic --availabilityMode within_30_days --limit 100
     craigslist search sfbay ccc --postal 94305 --search_distance 1 --limit 10
     craigslist search vancouver sss "shoes" --condition new like_new --hasPic --max_price 20 --limit 10
     craigslist search washingtondc jjj --is_telecommuting --is_internship
     craigslist list areas
+    craigslist list categories
     """
     global_description = textwrap.dedent(global_description)
     formatter_class = lambda prog: argparse.RawDescriptionHelpFormatter(prog, max_help_position=32)
@@ -127,6 +129,10 @@ def cli():
                 areas = get_areas()
                 for hostname, area in areas.items():
                     print(area)
+            elif args.entity == "categories":
+                categories = get_categories()
+                for abbreviation, category in categories.items():
+                    print(category)
             else:
                 raise Exception("don't know how to list {}".format(args.entity))
 
@@ -137,7 +143,9 @@ def cli():
             help='list',
             parents=shared_parsers)
 
-        parser.add_argument('entity', metavar='entity', choices=['areas'])
+        parser.add_argument('entity', metavar='entity',
+            choices=['areas', 'categories'],
+            help="Choices are: 'areas', 'categories'")
         parser.set_defaults(func=cli_list)
 
     create_search_parser(subparsers, shared_parsers=[shared_parser])

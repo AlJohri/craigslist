@@ -18,27 +18,33 @@ CLI
 ::
 
     $ craigslist
-    usage: craigslist [-h] {search} ...
+    usage: craigslist [-h] {search,list} ...
 
     examples:
+    craigslist search worcester apa
+    craigslist search newyork tlg
     craigslist search washingtondc apa --postal 20071 --search_distance 1
     craigslist search newyork aap --postal 10023 --search_distance 1 --hasPic --availabilityMode within_30_days --limit 100
     craigslist search sfbay ccc --postal 94305 --search_distance 1 --limit 10
     craigslist search vancouver sss "shoes" --condition new like_new --hasPic --max_price 20 --limit 10
     craigslist search washingtondc jjj --is_telecommuting --is_internship
+    craigslist list areas
+    craigslist list categories
 
     positional arguments:
-      {search}
-        search    search craigslist
+      {search,list}
+        search       search
+        list         list
 
     optional arguments:
-      -h, --help  show this help message and exit
+      -h, --help     show this help message and exit
 
 For more details, try:
 
 ::
 
     $ craigslist search
+    $ craigslist list
 
 API
 ---
