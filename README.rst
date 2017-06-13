@@ -1,7 +1,7 @@
 craigslist [**alpha**]
 ==========================
 
-|Travis CI Status| |Coverage Status| |License Status|
+|Travis CI Status| |Coverage Status| |PyPi Version| |License Status|
 
 Python wrapper for craigslist. Requires Python 3.6+.
 
@@ -107,5 +107,7 @@ Disclaimer
    :target: https://travis-ci.org/AlJohri/craigslist
 .. |Coverage Status| image:: https://coveralls.io/repos/github/AlJohri/craigslist/badge.svg?branch=master
    :target: https://coveralls.io/github/AlJohri/craigslist?branch=master
+.. |PyPI Version| image:: https://img.shields.io/pypi/v/craigslist.svg
+   :target: https://pypi.python.org/pypi/craigslist
 .. |License Status| image:: https://img.shields.io/badge/license-MIT-blue.svg
    :target: https://raw.githubusercontent.com/AlJohri/craigslist/master/LICENSE
