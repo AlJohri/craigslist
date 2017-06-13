@@ -17,7 +17,7 @@ CLI
 
 ::
 
-    $ craigslist --help
+    $ craigslist
     usage: craigslist [-h] {search} ...
 
     examples:
