@@ -94,4 +94,4 @@ def regularsearch(
         doc = lxml.html.fromstring(get(get_query_url(
             area, category, 'search', offset=offset, sort=sort, **kwargs)))
         num_posts_on_page = get_number_of_posts_on_current_page_from_response(doc)
-        yield from get_posts_from_response(doc)
+        yield from get_posts_from_response(doc, area)

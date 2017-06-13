@@ -2,6 +2,7 @@ import vcr
 import pytest
 import craigslist
 import arrow
+import itertools
 
 post_id = None
 post_url = None
@@ -21,6 +22,12 @@ def test_search_apa():
     global post_id, post_url
     post_id = post.id
     post_url = post.url
+
+    for post in itertools.islice(gen, 200):
+        pass
+
+    for post in itertools.islice(gen2, 200):
+        pass
 
 @pytest.mark.asyncio(forbid_global_loop=False)
 async def test_search_apa_async():
