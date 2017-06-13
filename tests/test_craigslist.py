@@ -117,3 +117,8 @@ async def test_get_post_async():
     post = await craigslist.get_async(url)
     assert post.id == id_
     assert post.url == url
+
+@pytest.mark.asyncio(forbid_global_loop=False)
+async def test_fail_get_post_async():
+    with pytest.raises(craigslist.exceptions.CraigslistException) as e_info:
+        post = await craigslist.get_async('https://washingtondc.craigslist.org/nva/apa/5875729002.html')

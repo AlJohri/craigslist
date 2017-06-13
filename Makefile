@@ -28,8 +28,8 @@ install:
 test:
 	python setup.py test
 
-register:
-	python setup.py register
+build:
+	python setup.py sdist bdist_wheel
 
 upload:
-	python setup.py sdist upload
+	twine upload dist/*

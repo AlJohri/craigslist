@@ -1,4 +1,4 @@
-craigslist [**pre-alpha**]
+craigslist [**alpha**]
 ==========================
 
 |Travis CI Status| |Coverage Status| |License Status|
@@ -10,7 +10,7 @@ Install
 
 ::
 
-    pip3 install --upgrade git+https://github.com/AlJohri/craigslist.git
+    pip3 install craigslist
 
 CLI
 ---
