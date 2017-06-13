@@ -52,22 +52,22 @@ async def test_search_apa_with_detail_async():
 
 def test_search_apa_with_clusters_or_pages():
     gen = craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1, type_='regularsearch')
-    for post in islice(gen, 0, 110): # force getting at one more page
+    for post in islice(gen, 0, 200): # force getting at one more page
         pass
 
     gen2 = craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1)
-    for post in islice(gen2, 0, 110): # force getting at least one cluster
+    for post in islice(gen2, 0, 200): # force getting at least one cluster
         pass
 
 @pytest.mark.asyncio(forbid_global_loop=False)
 async def test_search_apa_with_clusters_async():
     gen = craigslist.search_async('washingtondc', 'apa', postal=20071, search_distance=1)
-    async for post in aislice(gen, 0, 110): # force getting at least one cluster
+    async for post in aislice(gen, 0, 200): # force getting at least one cluster
         pass
 
 def test_search_with_debug_executor():
     gen = craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1, executor_class='craigslist.io.DebugExecutor')
-    for post in islice(gen, 0, 110): # force getting at least one cluster
+    for post in islice(gen, 0, 200): # force getting at least one cluster
         pass
 
 def test_search_sss():
@@ -106,6 +106,10 @@ def test_get_post():
     post = craigslist.get(url)
     assert post.id == post_id
     assert post.url == url
+
+def test_get_fail_post():
+    with pytest.raises(craigslist.exceptions.CraigslistException) as e_info:
+        post = craigslist.get('https://washingtondc.craigslist.org/nva/apa/5875729002.html')
 
 @pytest.mark.asyncio(forbid_global_loop=False)
 async def test_get_post_async():
