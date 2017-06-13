@@ -2,7 +2,8 @@ import vcr
 import pytest
 import craigslist
 import arrow
-import itertools
+from itertools import islice
+from craigslist.utils import aislice
 
 post_id = None
 post_url = None
@@ -22,12 +23,6 @@ def test_search_apa():
     global post_id, post_url
     post_id = post.id
     post_url = post.url
-
-    for post in itertools.islice(gen, 200):
-        pass
-
-    for post in itertools.islice(gen2, 200):
-        pass
 
 @pytest.mark.asyncio(forbid_global_loop=False)
 async def test_search_apa_async():
@@ -55,14 +50,22 @@ async def test_search_apa_with_detail_async():
     sort = lambda x: sorted(x, key=lambda y: y.id)
     assert sort(posts) == sort(posts2)
 
-def test_search_apa_with_clusters():
-    from itertools import islice
-    gen = craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1)
-    for post in islice(gen, 0, 110): # force getting at least one cluster
+def test_search_apa_with_clusters_or_pages():
+    gen = craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1, type_='regularsearch')
+    for post in islice(gen, 0, 110): # force getting at one more page
+        pass
+
+    gen2 = craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1)
+    for post in islice(gen2, 0, 110): # force getting at least one cluster
+        pass
+
+@pytest.mark.asyncio(forbid_global_loop=False)
+async def test_search_apa_with_clusters_async():
+    gen = craigslist.search_async('washingtondc', 'apa', postal=20071, search_distance=1)
+    async for post in aislice(gen, 0, 110): # force getting at least one cluster
         pass
 
 def test_search_with_debug_executor():
-    from itertools import islice
     gen = craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1, executor_class='craigslist.io.DebugExecutor')
     for post in islice(gen, 0, 110): # force getting at least one cluster
         pass

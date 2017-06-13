@@ -35,5 +35,27 @@ def convert_dict_to_camel_case(d): # pragma: no cover
 
     return remap(d, visit=visit)
 
+async def aenumerate(aiterable):
+    i = 0
+    async for x in aiterable:
+        yield i, x
+        i += 1
+
+# https://stackoverflow.com/questions/42378566/python-3-6-async-version-of-islice
+async def aislice(aiterable, *args):
+    s = slice(*args)
+    it = iter(range(s.start or 0, s.stop or sys.maxsize, s.step or 1))
+    try:
+        nexti = next(it)
+    except StopIteration:
+        return
+    async for i, element in aenumerate(aiterable):
+        if i == nexti:
+            yield element
+            try:
+                nexti = next(it)
+            except StopIteration:
+                return
+
 from blessings import Terminal
 t = Terminal()
