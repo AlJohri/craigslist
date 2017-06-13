@@ -14,6 +14,20 @@ from craigslist.exceptions import CraigslistException
 from craigslist.utils import t
 from craigslist._search import make_executor
 
+class CustomArgumentParser(argparse.ArgumentParser):
+    def error(self, message):
+        """
+        don't show error message if you just type "pbcli" or
+        "pbcli get" or "pbcli delete"
+        """
+        messages_to_mute = [
+            "the following arguments are required: %s" % word for word in ('command',)
+        ]
+        if message not in messages_to_mute:
+            sys.stderr.write('error: %s\n' % message)
+        self.print_help()
+        sys.exit(2)
+
 def cli():
     global_description = """
     examples:
@@ -27,11 +41,11 @@ def cli():
     global_description = textwrap.dedent(global_description)
     formatter_class = lambda prog: argparse.RawDescriptionHelpFormatter(prog, max_help_position=32)
 
-    parser = argparse.ArgumentParser(
+    parser = CustomArgumentParser(
         prog='craigslist',
         description=global_description,
         formatter_class=formatter_class)
-    subparsers = parser.add_subparsers(dest='command')
+    subparsers = parser.add_subparsers(dest='command', parser_class=CustomArgumentParser)
     subparsers.required = True
 
     shared_parser = argparse.ArgumentParser(add_help=False)

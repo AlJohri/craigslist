@@ -3,10 +3,11 @@
 from setuptools import setup, find_packages
 
 readme = open('README.rst').read()
+version = exec(open('craigslist/version.py').read())
 
 setup(
     name='craigslist',
-    version='0.1.0',
+    version=version,
     description='Python wrapper for craigslist.',
     long_description=readme,
     author='Al Johri',

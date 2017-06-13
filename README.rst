@@ -1,4 +1,4 @@
-craigslist [**alpha**]
+craigslist
 ==========================
 
 |Travis CI Status| |Coverage Status| |PyPi Version| |License Status|
