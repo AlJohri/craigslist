@@ -33,10 +33,14 @@ def http_to_https(url):
 
 def process_post_url_output(body):
 
-    if "<title>craigslist | post not found</title>" in body:
+    if "<title>craigslist | post not found</title>" in body or '<title>craigslist | Page Not Found</title>' in body:
         raise CraigslistException("post not found")
 
-    id_ = int(re.search(r'var pID = "(\d+)";', body).groups()[0])
+    try:
+        id_ = int(re.search(r'var pID = "(\d+)";', body).groups()[0])
+    except IndexError:
+        raise CraigslistException("post id not found on page")
+
     try:
         repost_id = re.search(r'var repost_of = (\d+);', body).groups()[0]
     except AttributeError:

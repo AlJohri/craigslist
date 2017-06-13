@@ -3,6 +3,9 @@ import pytest
 import craigslist
 import arrow
 
+post_id = None
+post_url = None
+
 def test_search_apa():
     gen = craigslist.search('washingtondc', 'apa', postal=20071, search_distance=1, type_='regularsearch')
     post = next(gen)
@@ -13,6 +16,11 @@ def test_search_apa():
     assert post.id == post2.id
     assert post.title == post2.title
     assert arrow.get(post.date) == arrow.get(post2.date).replace(second=0)
+
+    # save post id and url for use in a later test
+    global post_id, post_url
+    post_id = post.id
+    post_url = post.url
 
 @pytest.mark.asyncio(forbid_global_loop=False)
 async def test_search_apa_async():
@@ -84,14 +92,14 @@ def test_cli():
         args = cli()
 
 def test_get_post():
-    url = 'https://washingtondc.craigslist.org/nva/apa/6129297133.html'
+    id_, url = post_id, post_url # globals
     post = craigslist.get(url)
-    assert post.id == 6129297133
+    assert post.id == post_id
     assert post.url == url
 
 @pytest.mark.asyncio(forbid_global_loop=False)
 async def test_get_post_async():
-    url = 'https://washingtondc.craigslist.org/nva/apa/6129297133.html'
+    id_, url = post_id, post_url # globals
     post = await craigslist.get_async(url)
-    assert post.id == 6129297133
+    assert post.id == id_
     assert post.url == url
