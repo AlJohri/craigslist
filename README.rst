@@ -94,7 +94,7 @@ Test
 ::
 
     workon craigslist
-    py.test
+    make test
 
 Disclaimer
 ----------

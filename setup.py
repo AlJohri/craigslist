@@ -16,6 +16,8 @@ setup(
     packages=find_packages(),
     package_data={'craigslist': ['data/*.json']},
     install_requires=['requests', 'cssselect', 'lxml', 'blessings', 'arrow'],
+    setup_requires=['pytest-runner'],
+    tests_require=['pytest'],
     entry_points={
         'console_scripts': [
             'craigslist=craigslist.cli:main'

@@ -25,6 +25,9 @@ install:
 	pip install --editable .
 	pip install -r requirements-dev.txt
 
+test:
+	python setup.py test
+
 register:
 	python setup.py register
 
