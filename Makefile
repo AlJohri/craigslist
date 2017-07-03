@@ -33,5 +33,8 @@ test:
 build:
 	python setup.py sdist bdist_wheel
 
+build-exe:
+	python cxfreeze_setup.py build
+
 upload:
 	twine upload dist/*
