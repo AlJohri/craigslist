@@ -128,11 +128,11 @@ def cli():
             if args.entity == "areas":
                 areas = get_areas()
                 for hostname, area in areas.items():
-                    print(area)
+                    print(json.dumps(area))
             elif args.entity == "categories":
                 categories = get_categories()
                 for abbreviation, category in categories.items():
-                    print(category)
+                    print(json.dumps(category))
             else:
                 raise Exception("don't know how to list {}".format(args.entity))
 
