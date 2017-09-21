@@ -4,12 +4,23 @@ import lxml.html
 import asyncio
 import concurrent.futures
 from collections import namedtuple
-from craigslist.utils import get_only_first_or_none
+from craigslist.utils import get_only_first_or_none, http_to_https
 from craigslist.io import requests_get, asyncio_get
 from craigslist.exceptions import (
     CraigslistException, CraigslistValueError)
 
 logger = logging.getLogger(__name__)
+
+# https://washingtondc.craigslist.org/nva/cto/6202361814.html
+# create different classes for different types of posts?
+# or add just like a meta / tags field but this makes it less flat
+
+# condition: like new
+# fuel: gas
+# paint color: black
+# title status: clean
+# transmission: automatic
+# type: sedan
 
 DetailPost = namedtuple('DetailPost', [
     'id', 'repost_id', 'url', 'full_title', 'short_title', 'hood', 'num_bedrooms', 'sqftage', 'price',
@@ -26,10 +37,6 @@ def parse_housing_el(housing_el_text):
     area_raw = get_only_first_or_none([x for x in housing if "ft" in x])
     area = int(area_raw.replace("ft", "")) if area_raw else None
     return num_bedrooms, area
-
-def http_to_https(url):
-    if url.startswith("http://"):
-        return url.replace("http://", "https://", 1)
 
 def process_post_url_output(body):
 
@@ -84,7 +91,7 @@ def process_post_url_output(body):
     el_to_remove = body_el.cssselect('div.print-qrcode-container')[0]
     body_el.remove(el_to_remove)
     body_html = lxml.html.tostring(body_el).decode('utf-8')
-    body_text = body_el.text_content()
+    body_text = body_el.text_content().strip()
     # doc.cssselect("div.mapAndAttrs p.attrgroup") ????
     # [a.get('href') for a in doc.cssselect("#thumbs a")]
     return DetailPost(

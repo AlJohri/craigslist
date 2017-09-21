@@ -1,5 +1,10 @@
 import importlib, re
 
+def http_to_https(url):
+    if url.startswith("http://"):
+        return url.replace("http://", "https://", 1)
+    return url
+
 def cdn_url_to_http(url):
     if url.startswith("//"):
         return "http://" + url.lstrip("//")

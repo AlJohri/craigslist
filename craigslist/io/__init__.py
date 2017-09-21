@@ -1,11 +1,14 @@
-def requests_get(url):
+def requests_get(url, timeout=10):
     import requests
-    return requests.get(url).text
+    return requests.get(url, timeout=timeout).text
 
-async def asyncio_get(url):
+async def asyncio_get(url, timeout=10):
     import aiohttp
-    async with aiohttp.get(url) as r:
-        return await r.text()
+    import async_timeout
+    async with aiohttp.ClientSession() as session:
+        with async_timeout.timeout(timeout):
+            async with session.get(url) as r:
+                return await r.text()
 
 # def asyncio_queue():
 #     from asyncio import Queue

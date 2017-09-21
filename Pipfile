@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+
+[requires]
+python_version = '3.6'
+
+[packages]
+
+blessings = "*"
+requests = "*"
+lxml = "*"
+
+
+[dev-packages]
+
+pytest = "*"
+vcrpy = "*"
+tldextract = "*"
+coverage = "*"
+coveralls = "*"
+boltons = "*"
+twine = "*"
+pep8 = "*"
+aiohttp = "*"
+pytest-asyncio = "*"
+

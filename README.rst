@@ -23,6 +23,7 @@ CLI
     examples:
     craigslist search worcester apa
     craigslist search newyork tlg
+    craigslist search sfbay mis
     craigslist search washingtondc apa --postal 20071 --search_distance 1
     craigslist search newyork aap --postal 10023 --search_distance 1 --hasPic --availabilityMode within_30_days --limit 100
     craigslist search sfbay ccc --postal 94305 --search_distance 1 --limit 10
@@ -91,7 +92,6 @@ Setup
 
 ::
 
-    mkvirtualenv craigslist -p python3.6
     make install
 
 Test
@@ -99,7 +99,6 @@ Test
 
 ::
 
-    workon craigslist
     make test
 
 Disclaimer

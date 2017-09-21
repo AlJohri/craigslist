@@ -4,13 +4,13 @@
 data: craigslist/data/arguments.json
 
 craigslist/data/areas.json:
-	./scripts/get_areas.py > $@
+	pipenv run ./scripts/get_areas.py > $@
 
 craigslist/data/categories.json:
-	./scripts/get_categories.py > $@
+	pipenv run ./scripts/get_categories.py > $@
 
 craigslist/data/arguments.json: craigslist/data/areas.json craigslist/data/categories.json
-	./scripts/get_arguments.py > $@
+	pipenv run ./scripts/get_arguments.py > $@
 
 cleandata:
 	rm -f craigslist/data/areas.json
@@ -24,17 +24,18 @@ clean:
 	rm -rf dist
 
 install:
-	pip install --editable .
-	pip install -r requirements-dev.txt
+	pip install --upgrade -q pipenv
+	pipenv install
+	pipenv run pip install -e .
 
 test:
-	python setup.py test
+	pipenv run python -m pytest
 
 build:
-	python setup.py sdist bdist_wheel
+	pipenv run python setup.py sdist bdist_wheel
 
 build-exe:
-	python cxfreeze_setup.py build
+	pipenv run python cxfreeze_setup.py build
 
 upload:
-	twine upload dist/*
+	pipenv run twine upload dist/*
