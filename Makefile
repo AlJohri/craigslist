@@ -25,7 +25,7 @@ clean:
 
 install:
 	pip install --upgrade -q pipenv
-	pipenv install
+	pipenv install --dev
 	pipenv run pip install -e .
 
 test:

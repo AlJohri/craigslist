@@ -4,7 +4,7 @@ python:
   - "3.7-dev"
 install:
   - pip install --upgrade pipenv
-  - pipenv install --system
+  - pipenv install --dev --system
   - pip install .
 script:
   - pytest
