@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f126d3ebb006cf6dce7ae6b7e569fa4120bd4c39f13d803e5062145c1d0d35ee"
+            "sha256": "f9d751ed9d73411a9d6f815899eeb389e25af03d282d42bc3772fc65e7d01abc"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -9,14 +9,14 @@
             "os_name": "posix",
             "platform_machine": "x86_64",
             "platform_python_implementation": "CPython",
-            "platform_release": "16.7.0",
+            "platform_release": "17.0.0",
             "platform_system": "Darwin",
-            "platform_version": "Darwin Kernel Version 16.7.0: Thu Jun 15 17:36:27 PDT 2017; root:xnu-3789.70.16~2/RELEASE_X86_64",
+            "platform_version": "Darwin Kernel Version 17.0.0: Thu Aug 24 21:48:19 PDT 2017; root:xnu-4570.1.46~2/RELEASE_X86_64",
             "python_full_version": "3.6.2",
             "python_version": "3.6",
             "sys_platform": "darwin"
         },
-        "pipfile-spec": 3,
+        "pipfile-spec": 6,
         "requires": {
             "python_version": "3.6"
         },
@@ -237,6 +237,12 @@
             ],
             "version": "==3.2.0"
         },
+        "nuitka": {
+            "hashes": [
+                "sha256:5a9e7f64d7d07978274b0f8ae9cb7bff40dc11f3b3c9c59599c6b4f1dd27d2e4"
+            ],
+            "version": "==0.5.27"
+        },
         "pep8": {
             "hashes": [
                 "sha256:4fc2e478addcf17016657dff30b2d8d611e8341fac19ccf2768802f6635d7b8a",
@@ -267,10 +273,10 @@
         },
         "pytest-asyncio": {
             "hashes": [
-                "sha256:b14b45c9e9a270050c66068eb84ff143802228bdfab0524c0e9b345c23272d3b",
-                "sha256:ef384946ebca4a3b02f6bb210eba24c502d80cc6556936a5eb5617e7ae22a3a0"
+                "sha256:286b50773e996c80d894b95afaf45df6952408a67a59979ca9839f94693ec7fd",
+                "sha256:f32804bb58a66e13a3eda11f8942a71b1b6a30466b0d2ffe9214787aab0e172e"
             ],
-            "version": "==0.7.0"
+            "version": "==0.8.0"
         },
         "pyyaml": {
             "hashes": [
@@ -327,10 +333,10 @@
         },
         "tqdm": {
             "hashes": [
-                "sha256:c8314e322bb14960b15e87a8e5cbdd0da71bf4077ccb87a9c24731ad290c48d2",
-                "sha256:e18c8ce990b3aaafaf9d9d8de75446df14d6f514b786c6cae0fc611265b4a4fb"
+                "sha256:97b17848f09f3eb6d98fea081d06e8adcc70fd3f4ce0ee73365eaee616aaee7b",
+                "sha256:02dd7f244d91539352f908667e4d904fddf1b8c434a22b838d3f53ae4dffdd2f"
             ],
-            "version": "==4.17.0"
+            "version": "==4.17.1"
         },
         "twine": {
             "hashes": [
