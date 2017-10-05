@@ -56,6 +56,7 @@ top_level_categories = {
 
 # https://newyork.craigslist.org/i/apartments
 # https://sfbay.craigslist.org/i/autos
+# https://portland.craigslist.org/i/computers
 missing_categories = {
     'aap': {
         'abbreviation': 'aap',
@@ -67,6 +68,18 @@ missing_categories = {
         'abbreviation': 'cta',
         'category_id': None,
         'description': 'cars & trucks',
+        'type': 'S'
+    },
+    'sya': {
+        'abbreviation': 'sya',
+        'category_id': None,
+        'description': 'computers',
+        'type': 'S'
+    },
+    'syp': {
+        'abbreviation': 'syp',
+        'category_id': None,
+        'description': 'computer parts',
         'type': 'S'
     },
 }

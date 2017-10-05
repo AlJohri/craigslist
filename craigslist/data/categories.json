@@ -989,10 +989,22 @@
         "description": "housing swap",
         "type": "H"
     },
+    "sya": {
+        "abbreviation": "sya",
+        "category_id": null,
+        "description": "computers",
+        "type": "S"
+    },
     "syd": {
         "abbreviation": "syd",
         "category_id": 166,
         "description": "computers - by dealer",
+        "type": "S"
+    },
+    "syp": {
+        "abbreviation": "syp",
+        "category_id": null,
+        "description": "computer parts",
         "type": "S"
     },
     "sys": {
