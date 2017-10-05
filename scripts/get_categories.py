@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
-import re, requests, json
+import re
+import json
+import requests
+import lxml.html
 from craigslist.utils import convert_dict_to_camel_case
 
 top_level_categories = {
@@ -54,15 +57,18 @@ top_level_categories = {
     }
 }
 
-# https://newyork.craigslist.org/i/apartments
-# https://sfbay.craigslist.org/i/autos
-# https://portland.craigslist.org/i/computers
 missing_categories = {
     'aap': {
         'abbreviation': 'aap',
         'category_id': None,
         'description': 'all apartments',
         'type': 'H'
+    },
+    'nfa': {
+        'abbreviation': 'nfa',
+        'category_id': None,
+        'description': 'no-fee apartments',
+        'type': 'H',
     },
     'cta': {
         'abbreviation': 'cta',
@@ -82,6 +88,54 @@ missing_categories = {
         'description': 'computer parts',
         'type': 'S'
     },
+    'wta': {
+        'abbreviation': 'wta',
+        'category_id': None,
+        'description': 'auto wheels & tires',
+        'type': 'S'
+    },
+    'pta': {
+        'abbreviation': 'pta',
+        'category_id': None,
+        'description': 'auto parts',
+        'type': 'S'
+    },
+    'bia': {
+        'abbreviation': 'bia',
+        'category_id': None,
+        'description': 'bicycles',
+        'type': 'S'
+    },
+    'bip': {
+        'abbreviation': 'bip',
+        'category_id': None,
+        'description': 'bicycle parts',
+        'type': 'S',
+    },
+    'boo': {
+        'abbreviation': 'boo',
+        'category_id': None,
+        'description': 'boats',
+        'type': 'S'
+    },
+    'bpa': {
+        'abbreviation': 'bpa',
+        'category_id': None,
+        'description': 'boat parts',
+        'type': 'S'
+    },
+    'mca': {
+        'abbreviation': 'mca',
+        'category_id': None,
+        'description': 'motorcycles/scooters',
+        'type': 'S'
+    },
+    'mpa': {
+        'abbreviation': 'mpa',
+        'category_id': None,
+        'description': 'motorcycle parts',
+        'type': 'S'
+    },
 }
 
 def get_categories_mapping():
@@ -91,6 +145,27 @@ def get_categories_mapping():
     categories_mapping.update(missing_categories)
     categories_mapping.update(top_level_categories)
     return categories_mapping
+
+def get_missing_categories():
+    """
+    not fully implemented. hardcoded above as `missing_categories` for now
+
+    common meta categories:
+
+    /i/apartments
+    /i/auto_parts
+    /i/bikes
+    /i/boats
+    /i/autos
+    /i/computers
+    /i/motorcycles
+    """
+    areas = ['nyc', 'sfbay', 'washingtondc', 'chicago']
+    for area in areas:
+        response = requests.get(f"http://{area}.craigslist.org")
+        doc = lxml.html.fromstring(response.content)
+        for x in doc.cssselect("#center a[href*='/i/']"):
+            print(x.get('href'))
 
 if __name__ == '__main__':
     categories_mapping = get_categories_mapping()

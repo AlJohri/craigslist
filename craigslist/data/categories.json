@@ -119,6 +119,12 @@
         "description": "business/commercial - by owner",
         "type": "S"
     },
+    "bia": {
+        "abbreviation": "bia",
+        "category_id": null,
+        "description": "bicycles",
+        "type": "S"
+    },
     "bid": {
         "abbreviation": "bid",
         "category_id": 172,
@@ -129,6 +135,12 @@
         "abbreviation": "bik",
         "category_id": 68,
         "description": "bicycles - by owner",
+        "type": "S"
+    },
+    "bip": {
+        "abbreviation": "bip",
+        "category_id": null,
+        "description": "bicycle parts",
         "type": "S"
     },
     "biz": {
@@ -161,10 +173,22 @@
         "description": "boats - by dealer",
         "type": "S"
     },
+    "boo": {
+        "abbreviation": "boo",
+        "category_id": null,
+        "description": "boats",
+        "type": "S"
+    },
     "bop": {
         "abbreviation": "bop",
         "category_id": 197,
         "description": "bicycle parts - by owner",
+        "type": "S"
+    },
+    "bpa": {
+        "abbreviation": "bpa",
+        "category_id": null,
+        "description": "boat parts",
         "type": "S"
     },
     "bpd": {
@@ -635,6 +659,12 @@
         "description": "materials - by owner",
         "type": "S"
     },
+    "mca": {
+        "abbreviation": "mca",
+        "category_id": null,
+        "description": "motorcycles/scooters",
+        "type": "S"
+    },
     "mcd": {
         "abbreviation": "mcd",
         "category_id": 160,
@@ -677,6 +707,12 @@
         "description": "cell phones - by dealer",
         "type": "S"
     },
+    "mpa": {
+        "abbreviation": "mpa",
+        "category_id": null,
+        "description": "motorcycle parts",
+        "type": "S"
+    },
     "mpd": {
         "abbreviation": "mpd",
         "category_id": 196,
@@ -712,6 +748,12 @@
         "category_id": 71,
         "description": "musicians",
         "type": "C"
+    },
+    "nfa": {
+        "abbreviation": "nfa",
+        "category_id": null,
+        "description": "no-fee apartments",
+        "type": "H"
     },
     "nfb": {
         "abbreviation": "nfb",
@@ -784,6 +826,12 @@
         "category_id": 41,
         "description": "parking & storage",
         "type": "H"
+    },
+    "pta": {
+        "abbreviation": "pta",
+        "category_id": null,
+        "description": "auto parts",
+        "type": "S"
     },
     "ptd": {
         "abbreviation": "ptd",
@@ -1186,6 +1234,12 @@
         "category_id": 16,
         "description": "writing/editing",
         "type": "J"
+    },
+    "wta": {
+        "abbreviation": "wta",
+        "category_id": null,
+        "description": "auto wheels & tires",
+        "type": "S"
     },
     "wtd": {
         "abbreviation": "wtd",
