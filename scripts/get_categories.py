@@ -55,13 +55,20 @@ top_level_categories = {
 }
 
 # https://newyork.craigslist.org/i/apartments
+# https://sfbay.craigslist.org/i/autos
 missing_categories = {
     'aap': {
         'abbreviation': 'aap',
         'category_id': None,
         'description': 'all apartments',
         'type': 'H'
-    }
+    },
+    'cta': {
+        'abbreviation': 'cta',
+        'category_id': None,
+        'description': 'cars & trucks',
+        'type': 'S'
+    },
 }
 
 def get_categories_mapping():

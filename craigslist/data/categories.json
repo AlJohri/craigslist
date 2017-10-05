@@ -281,6 +281,12 @@
         "description": "customer service",
         "type": "J"
     },
+    "cta": {
+        "abbreviation": "cta",
+        "category_id": null,
+        "description": "cars & trucks",
+        "type": "S"
+    },
     "ctd": {
         "abbreviation": "ctd",
         "category_id": 146,
