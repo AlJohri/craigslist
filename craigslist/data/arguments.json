@@ -14,6 +14,16 @@
         "choices": null,
         "const": "1",
         "default": null,
+        "dest": "crypto_currency_ok",
+        "help": null,
+        "metavar": null,
+        "nargs": null
+    },
+    {
+        "action": "store_const",
+        "choices": null,
+        "const": "1",
+        "default": null,
         "dest": "hasPic",
         "help": null,
         "metavar": null,

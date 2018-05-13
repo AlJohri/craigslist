@@ -23,12 +23,6 @@
         "description": "activity partners",
         "type": "C"
     },
-    "aiv": {
-        "abbreviation": "aiv",
-        "category_id": 89,
-        "description": "apts registration fee",
-        "type": "H"
-    },
     "aos": {
         "abbreviation": "aos",
         "category_id": 106,
@@ -76,6 +70,18 @@
         "category_id": 70,
         "description": "artists",
         "type": "C"
+    },
+    "avd": {
+        "abbreviation": "avd",
+        "category_id": 209,
+        "description": "aviation - by dealer",
+        "type": "S"
+    },
+    "avo": {
+        "abbreviation": "avo",
+        "category_id": 208,
+        "description": "aviation - by owner",
+        "type": "S"
     },
     "bab": {
         "abbreviation": "bab",
@@ -220,12 +226,6 @@
         "category_id": 66,
         "description": "event calendar",
         "type": "L"
-    },
-    "cas": {
-        "abbreviation": "cas",
-        "category_id": 62,
-        "description": "casual encounters",
-        "type": "P"
     },
     "cbd": {
         "abbreviation": "cbd",
@@ -376,12 +376,6 @@
         "category_id": 175,
         "description": "cds / dvds / vhs - by dealer",
         "type": "S"
-    },
-    "eng": {
-        "abbreviation": "eng",
-        "category_id": 14,
-        "description": "internet engineering",
-        "type": "J"
     },
     "etc": {
         "abbreviation": "etc",
@@ -623,18 +617,6 @@
         "description": "lessons & tutoring",
         "type": "B"
     },
-    "m4m": {
-        "abbreviation": "m4m",
-        "category_id": 33,
-        "description": "men seeking men",
-        "type": "P"
-    },
-    "m4w": {
-        "abbreviation": "m4w",
-        "category_id": 32,
-        "description": "men seeking women",
-        "type": "P"
-    },
     "mad": {
         "abbreviation": "mad",
         "category_id": 183,
@@ -687,7 +669,7 @@
         "abbreviation": "mis",
         "category_id": 63,
         "description": "missed connections",
-        "type": "P"
+        "type": "C"
     },
     "mnu": {
         "abbreviation": "mnu",
@@ -736,12 +718,6 @@
         "category_id": 98,
         "description": "musical instruments - by owner",
         "type": "S"
-    },
-    "msr": {
-        "abbreviation": "msr",
-        "category_id": 34,
-        "description": "miscellaneous romance",
-        "type": "P"
     },
     "muc": {
         "abbreviation": "muc",
@@ -891,7 +867,7 @@
         "abbreviation": "rnr",
         "category_id": 90,
         "description": "rants & raves",
-        "type": "P"
+        "type": "C"
     },
     "roo": {
         "abbreviation": "roo",
@@ -1019,12 +995,6 @@
         "description": "for sale",
         "type": "S"
     },
-    "stp": {
-        "abbreviation": "stp",
-        "category_id": 102,
-        "description": "strictly platonic",
-        "type": "P"
-    },
     "sub": {
         "abbreviation": "sub",
         "category_id": 39,
@@ -1084,18 +1054,6 @@
         "category_id": 52,
         "description": "tv/film/video/radio",
         "type": "J"
-    },
-    "thp": {
-        "abbreviation": "thp",
-        "category_id": 148,
-        "description": "therapeutic services",
-        "type": "B"
-    },
-    "ths": {
-        "abbreviation": "ths",
-        "category_id": 84,
-        "description": "therapeutic services",
-        "type": "B"
     },
     "tid": {
         "abbreviation": "tid",
@@ -1186,18 +1144,6 @@
         "category_id": 29,
         "description": "volunteers",
         "type": "C"
-    },
-    "w4m": {
-        "abbreviation": "w4m",
-        "category_id": 31,
-        "description": "women seeking men",
-        "type": "P"
-    },
-    "w4w": {
-        "abbreviation": "w4w",
-        "category_id": 30,
-        "description": "women seeking women",
-        "type": "P"
     },
     "wad": {
         "abbreviation": "wad",
