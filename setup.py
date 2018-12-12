@@ -16,7 +16,7 @@ setup(
     license='MIT',
     packages=find_packages(),
     package_data={'craigslist': ['data/*.json']},
-    install_requires=['requests', 'cssselect', 'lxml', 'blessings', 'arrow'],
+    install_requires=['requests', 'cssselect', 'lxml', 'arrow'],
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
     entry_points={

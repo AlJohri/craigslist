@@ -61,6 +61,3 @@ async def aislice(aiterable, *args):
                 nexti = next(it)
             except StopIteration:
                 return
-
-from blessings import Terminal
-t = Terminal()

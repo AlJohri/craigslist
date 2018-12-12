@@ -11,7 +11,6 @@ from os import path
 from craigslist import search
 from craigslist.data import get_areas, get_categories, DATA_FOLDER
 from craigslist.exceptions import CraigslistException
-from craigslist.utils import t
 from craigslist._search import make_executor
 
 class CustomArgumentParser(argparse.ArgumentParser):
@@ -94,7 +93,7 @@ def cli():
                 # executor.shutdown(wait=False)
                 # sys.exit()
             except CraigslistException as e:
-                print(t.red(str(e)))
+                print(e, file=sys.stderr)
                 sys.exit()
 
         parser = parent_subparsers.add_parser(

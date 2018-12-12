@@ -44,7 +44,7 @@ def process_post_url_output(body):
         raise CraigslistException("post not found")
 
     try:
-        id_ = int(re.search(r'var pID = "(\d+)";', body).groups()[0])
+        id_ = int(re.search(r'var pID = (\d+);', body).groups()[0])
     except IndexError:
         raise CraigslistException("post id not found on page")
 
