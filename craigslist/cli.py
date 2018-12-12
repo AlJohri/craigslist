@@ -2,7 +2,6 @@
 
 import sys
 import json
-import blessings
 import itertools
 import argparse
 import logging
