@@ -24,7 +24,10 @@ clean:
 	rm -rf dist
 
 install:
-	pip install --upgrade -q pipenv
+	# install pipenv if it is not already installed
+	# if `brew` exists on the PATH, use that to install pipenv
+	# otherwise, use pip
+	which pipenv &>/dev/null || (which brew &>/dev/null && brew install pipenv) || pip install --upgrade -q pipenv
 	pipenv install --dev
 	pipenv run pip install -e .
 
