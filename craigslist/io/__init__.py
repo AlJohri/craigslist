@@ -1,8 +1,14 @@
+import logging
+
+logger = logging.getLogger(__name__)
+
 def requests_get(url, timeout=10):
+    logger.debug("downloading %s" % url)
     import requests
     return requests.get(url, timeout=timeout).text
 
 async def asyncio_get(url, timeout=10):
+    logger.debug("downloading %s" % url)
     import aiohttp
     import async_timeout
     async with aiohttp.ClientSession() as session:

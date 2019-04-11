@@ -60,17 +60,9 @@ def parse_post(post, craigslist_area_name):
         "area": area,
     })
 
-def process_page_url(url, get):
-    logger.debug("downloading %s" % url)
-    body = get(url)
-    return parse_page_url_output(body)
-
 def get_posts_from_response(doc, area):
     for post in doc.cssselect("#sortable-results > ul.rows > li"):
         yield parse_post(post, area)
-
-def parse_page_url_output(body):
-    return body
 
 from concurrent.futures import as_completed
 from craigslist.utils import import_class
@@ -92,8 +84,10 @@ def regularsearch(
         area, category, 'search', offset=0, sort=sort, **kwargs)))
     num_total_posts = get_num_total_posts_from_response(doc)
     num_posts_on_page = get_number_of_posts_on_current_page_from_response(doc)
+    logger.debug(f'downloaded first page: num_total_posts: {num_total_posts} | num_posts_on_page: {num_posts_on_page}')
     yield from get_posts_from_response(doc, area)
-    for offset in range(100, num_total_posts, 100):
+    per_page = num_posts_on_page
+    for offset in range(per_page, num_total_posts, per_page):
         doc = lxml.html.fromstring(get(get_query_url(
             area, category, 'search', offset=offset, sort=sort, **kwargs)))
         num_posts_on_page = get_number_of_posts_on_current_page_from_response(doc)

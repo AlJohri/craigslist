@@ -59,7 +59,7 @@ def cli():
         def cli_search(args):
             # TODO: make this a whitelist not a blacklist for starters
             filter_out_params = [
-                'verbose', 'command', 'area', 'category', 'detail', 'executor_class', 'max_workers',
+                'verbose', 'command', 'area', 'category', 'detail', 'executor_class', 'method', 'max_workers',
                 'limit', 'cache', 'func']
             params = {k:v for k,v in vars(args).items() if v and k not in filter_out_params}
             logging.info('querying with parameters: {}'.format(params))
@@ -81,6 +81,7 @@ def cli():
                     args.category,
                     get_detailed_posts=args.detail,
                     executor=executor,
+                    type_=args.method,
                     **params), 0, args.limit)
             try:
                 for post in posts:
@@ -114,6 +115,7 @@ def cli():
         parser.add_argument('--limit', type=int)
         parser.add_argument('--detail', action="store_true")
         parser.add_argument('--executor_class', default='concurrent.futures.ThreadPoolExecutor')
+        parser.add_argument('--method', default='jsonsearch')
         parser.add_argument('--max_workers', default=10)
         parser.add_argument('--cachedir', help='Cache directory. Defaults to ~/.craigslist')
         parser.add_argument('--nocache', action="store_false", dest='cache', default=True)

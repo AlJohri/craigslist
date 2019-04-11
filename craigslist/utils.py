@@ -61,3 +61,14 @@ async def aislice(aiterable, *args):
                 nexti = next(it)
             except StopIteration:
                 return
+import lxml
+
+def debug_doc(fn):
+    def inner(doc):
+        try:
+            return fn(doc)
+        except Exception as e:
+            with open('test.html', 'wb') as f:
+                f.write(lxml.html.tostring(doc))
+            raise e
+    return inner
