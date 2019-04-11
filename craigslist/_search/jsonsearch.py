@@ -111,7 +111,7 @@ def jsonsearch(
             for future in futures:
                 future.cancel()
 
-    url = get_query_url(area, category, "jsonsearch", sort=sort, **kwargs)
+    url = get_query_url(area, category, "jsonsearch", sort=sort, map=1, **kwargs)
     posts, clusters = process_cluster_url(url, get)
     yield from posts
     yield from process_clusters(clusters, executor)
