@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 
 DetailPost = namedtuple('DetailPost', [
     'id', 'repost_id', 'url', 'full_title', 'short_title', 'hood', 'num_bedrooms', 'sqftage', 'price',
-    'body_html', 'body_text', 'address'])
+    'body_html', 'body_text', 'address', 'available_date'])
 
 # http://washingtondc.craigslist.org/doc/apa/5870605045.html
 # http://washingtondc.craigslist.org/fb/wdc/apa/5870605045
@@ -86,6 +86,11 @@ def process_post_url_output(body):
         address = doc.cssselect("div.mapaddress")[0].text
     except IndexError:
         address = None
+        
+    try:
+        available_date = doc.cssselect('p.attrgroup .property_date')[0].get('data-date')
+    except IndexError:
+        available_date = None
 
     body_el = doc.cssselect("#postingbody")[0]
     el_to_remove = body_el.cssselect('div.print-qrcode-container')[0]
@@ -106,7 +111,8 @@ def process_post_url_output(body):
         price=price,
         body_html=body_html,
         body_text=body_text,
-        address=address)
+        address=address,
+        available_date=available_date)
 
 def process_post_url(url, get):
     logger.debug("downloading %s" % url)
