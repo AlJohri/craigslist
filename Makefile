@@ -40,4 +40,4 @@ build-exe:
 	pipenv run python cxfreeze_setup.py build
 
 upload:
-	pipenv run twine upload dist/*
+	pipenv run twine upload --verbose dist/*
