@@ -45,6 +45,7 @@ def parse_cluster_url_output(body):
         raise
     posts = [parse_post(x)
         for x in items if not x.get('GeoCluster')]
+
     clusters = [parse_cluster(x, baseurl)
         for x in items if x.get('GeoCluster')]
     return posts, clusters
@@ -134,7 +135,7 @@ async def jsonsearch_async(
     **kwargs):
 
     async def process_clusters(clusters):
-        futures = [process_cluster_url(cluster.url) for cluster in clusters]
+        futures = [process_cluster_url_async(cluster.url, get) for cluster in clusters]
         try:
             for future in as_completed(futures):
                 posts, clusters = await future
@@ -146,8 +147,9 @@ async def jsonsearch_async(
             for future in futures:
                 future.cancel()
 
-    url = get_query_url(area, category, "jsonsearch", sort=sort, **kwargs)
+    url = get_query_url(area, category, "jsonsearch", sort=sort, map=1, **kwargs)
     posts, clusters = await process_cluster_url_async(url, get)
+
     for post in posts:
         yield post
     async for post in process_clusters(clusters):
