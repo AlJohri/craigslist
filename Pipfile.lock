@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c13afdb5d2c753a452bcff703d9b549d6e73f89567a9fd5de564a9669ac6c4b9"
+            "sha256": "4ac65e15b7666ad99052e0cc20231e4cd3085dea0b5814a762fa803e02d9aadd"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -254,6 +254,12 @@
                 "sha256:ea8b7f6188e6fa117537c3df7da9fc686d485087abf6ac197f9c46432f7e4a3c"
             ],
             "version": "==2.8"
+        },
+        "idna-ssl": {
+            "hashes": [
+                "sha256:a933e3bb13da54383f9e8f35dc4f9cb9eb9b3b78c6b36f311254d6d0d92c6c7c"
+            ],
+            "version": "==1.1.0"
         },
         "importlib-metadata": {
             "hashes": [
