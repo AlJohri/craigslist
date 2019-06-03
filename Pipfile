@@ -6,8 +6,7 @@ verify_ssl = true
 python_version = '3.7'
 
 [packages]
-requests = "*"
-lxml = "*"
+craigslist = {editable = true,path = "."}
 
 [dev-packages]
 pytest = "*"

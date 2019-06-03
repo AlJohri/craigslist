@@ -29,7 +29,6 @@ install:
 	# otherwise, use pip
 	which pipenv &>/dev/null || (which brew &>/dev/null && brew install pipenv) || pip install --upgrade -q pipenv
 	pipenv install --dev
-	pipenv run pip install -e .
 
 test:
 	pipenv run python -m pytest
